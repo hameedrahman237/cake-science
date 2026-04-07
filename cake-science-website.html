@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cake Science – Baking Class Andaman | Learn Baking Like a Pro 🎂</title>
+<meta name="description" content="Join Cake Science Baking Classes in Andaman. Expert instruction in cake decoration, bread making & baking workshops. Located in Sri Vijaya Puram, Andaman.">
+<meta name="keywords" content="baking class andaman, cake science, cake decoration, baking workshop, sri vijaya puram, andaman baking">
+<meta property="og:title" content="Cake Science – Baking Class Andaman">
+<meta property="og:description" content="Learn baking like a pro! Join our workshops in Sri Vijaya Puram, Andaman.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --cream: #FDF6EC;
+  --cream2: #FAF0E0;
+  --blush: #F4C2C2;
+  --rose: #E8A0A0;
+  --deep-rose: #C97C7C;
+  --choco: #5C3D2E;
+  --choco-light: #8B6045;
+  --gold: #D4A853;
+  --gold-light: #F0CC80;
+  --text-dark: #2C1A0E;
+  --text-mid: #5C3D2E;
+  --text-soft: #9B7B6A;
+  --glass: rgba(253,246,236,0.75);
+  --glass-dark: rgba(44,26,14,0.7);
+  --shadow: 0 20px 60px rgba(92,61,46,0.15);
+  --shadow-hover: 0 30px 80px rgba(92,61,46,0.25);
+  --radius: 20px;
+  --transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  --bg: #FDF6EC;
+  --surface: #FFFFFF;
+  --nav-bg: rgba(253,246,236,0.92);
+}
+[data-theme="dark"] {
+  --cream: #1A0F08;
+  --cream2: #231407;
+  --bg: #1A0F08;
+  --surface: #2C1A0E;
+  --nav-bg: rgba(26,15,8,0.95);
+  --text-dark: #F5E8D6;
+  --text-mid: #D4B896;
+  --text-soft: #A08060;
+  --glass: rgba(44,26,14,0.8);
+  --shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* ─── LOADER ─── */
+#loader {
+  position:fixed; inset:0; z-index:9999;
+  background: var(--cream);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  transition: opacity 0.6s, visibility 0.6s;
+}
+#loader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+.loader-cake {
+  font-size:4rem;
+  animation: bounceScale 0.8s ease-in-out infinite alternate;
+  filter: drop-shadow(0 8px 20px rgba(212,168,83,0.5));
+}
+.loader-text {
+  font-family:'Pacifico', cursive;
+  font-size:1.4rem;
+  color: var(--choco);
+  margin-top:16px;
+  letter-spacing:2px;
+}
+.loader-bar {
+  width:200px; height:4px;
+  background: var(--blush);
+  border-radius:10px;
+  margin-top:20px;
+  overflow:hidden;
+}
+.loader-bar-fill {
+  height:100%;
+  background: linear-gradient(90deg, var(--gold), var(--deep-rose));
+  border-radius:10px;
+  animation: loadBar 2s ease forwards;
+}
+@keyframes loadBar { from{width:0} to{width:100%} }
+@keyframes bounceScale {
+  from{transform:scale(1) translateY(0)}
+  to{transform:scale(1.15) translateY(-10px)}
+}
+
+/* ─── PARTICLES ─── */
+.particles { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+.particle {
+  position:absolute;
+  font-size:1.2rem;
+  opacity:0.12;
+  animation: floatParticle linear infinite;
+}
+@keyframes floatParticle {
+  0%{transform:translateY(100vh) rotate(0deg); opacity:0}
+  10%{opacity:0.12}
+  90%{opacity:0.12}
+  100%{transform:translateY(-100px) rotate(360deg); opacity:0}
+}
+
+/* ─── NAVBAR ─── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212,168,83,0.2);
+  padding:0 5%;
+  height:70px;
+  display:flex; align-items:center; justify-content:space-between;
+  transition: var(--transition);
+}
+nav.scrolled {
+  height:62px;
+  box-shadow: 0 4px 30px rgba(92,61,46,0.12);
+}
+.nav-brand {
+  display:flex; align-items:center; gap:10px;
+  text-decoration:none;
+}
+.nav-brand .logo-icon { font-size:1.8rem; animation:spin 8s linear infinite; }
+@keyframes spin { 100%{transform:rotate(360deg)} }
+.nav-brand .brand-name {
+  font-family:'Pacifico', cursive;
+  font-size:1.3rem;
+  background: linear-gradient(135deg, var(--choco), var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.nav-links {
+  display:flex; align-items:center; gap:2rem;
+  list-style:none;
+}
+.nav-links a {
+  text-decoration:none; color:var(--text-mid);
+  font-weight:500; font-size:0.9rem;
+  position:relative; padding-bottom:2px;
+  transition: var(--transition);
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:0; left:0;
+  width:0; height:2px;
+  background: linear-gradient(90deg, var(--gold), var(--deep-rose));
+  border-radius:2px; transition: width 0.3s ease;
+}
+.nav-links a:hover { color:var(--choco); }
+.nav-links a:hover::after { width:100%; }
+.nav-actions { display:flex; align-items:center; gap:12px; }
+.btn-theme {
+  background:none; border:none; cursor:pointer;
+  font-size:1.2rem; color:var(--text-mid);
+  width:38px; height:38px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  transition: var(--transition);
+  background: rgba(212,168,83,0.1);
+}
+.btn-theme:hover { background:rgba(212,168,83,0.25); transform:rotate(15deg); }
+.btn-admin-nav {
+  background: linear-gradient(135deg, var(--choco), var(--choco-light));
+  color:#fff; border:none; cursor:pointer;
+  padding:8px 16px; border-radius:20px;
+  font-size:0.8rem; font-weight:600;
+  transition: var(--transition);
+}
+.btn-admin-nav:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(92,61,46,0.3); }
+.hamburger {
+  display:none; flex-direction:column; gap:5px;
+  cursor:pointer; background:none; border:none; padding:4px;
+}
+.hamburger span {
+  display:block; width:24px; height:2px;
+  background:var(--choco); border-radius:2px;
+  transition: var(--transition);
+}
+.mobile-menu {
+  display:none; position:fixed;
+  top:70px; left:0; right:0;
+  background:var(--nav-bg); backdrop-filter:blur(20px);
+  padding:20px 5% 30px;
+  border-bottom:1px solid rgba(212,168,83,0.2);
+  z-index:999; flex-direction:column; gap:16px;
+}
+.mobile-menu.open { display:flex; }
+.mobile-menu a {
+  text-decoration:none; color:var(--text-mid);
+  font-weight:500; font-size:1rem;
+  padding:10px 0;
+  border-bottom:1px solid rgba(212,168,83,0.15);
+}
+
+/* ─── HERO ─── */
+#hero {
+  min-height:100vh;
+  position:relative;
+  display:flex; align-items:center;
+  overflow:hidden;
+  background: linear-gradient(145deg, var(--cream) 0%, var(--cream2) 50%, #FDEBD0 100%);
+  padding-top:70px;
+}
+.hero-bg-decor {
+  position:absolute; inset:0; pointer-events:none;
+}
+.hero-blob {
+  position:absolute; border-radius:50%;
+  filter:blur(80px); opacity:0.35;
+}
+.hero-blob-1 {
+  width:600px; height:600px;
+  background:radial-gradient(circle, var(--blush), transparent);
+  top:-100px; right:-100px;
+  animation: blobFloat 8s ease-in-out infinite;
+}
+.hero-blob-2 {
+  width:400px; height:400px;
+  background:radial-gradient(circle, var(--gold-light), transparent);
+  bottom:-100px; left:-50px;
+  animation: blobFloat 10s ease-in-out infinite reverse;
+}
+@keyframes blobFloat {
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(30px,-30px) scale(1.05)}
+}
+.hero-content {
+  position:relative; z-index:1;
+  max-width:1200px; margin:0 auto;
+  padding:60px 5%;
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:60px; align-items:center;
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(212,168,83,0.15);
+  border:1px solid rgba(212,168,83,0.4);
+  border-radius:50px; padding:6px 16px;
+  font-size:0.8rem; font-weight:600;
+  color:var(--gold); letter-spacing:1px;
+  margin-bottom:20px;
+  animation: fadeSlideUp 0.8s ease both;
+}
+.hero-title {
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(2.8rem, 5vw, 4.5rem);
+  font-weight:700; line-height:1.15;
+  color:var(--text-dark);
+  margin-bottom:20px;
+  animation: fadeSlideUp 0.8s 0.2s ease both;
+}
+.hero-title .highlight {
+  background: linear-gradient(135deg, var(--deep-rose), var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub {
+  font-size:1.1rem; color:var(--text-soft);
+  line-height:1.7; margin-bottom:36px;
+  max-width:460px;
+  animation: fadeSlideUp 0.8s 0.4s ease both;
+}
+.hero-btns {
+  display:flex; gap:16px; flex-wrap:wrap;
+  animation: fadeSlideUp 0.8s 0.6s ease both;
+}
+.btn-primary {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:14px 32px; border-radius:50px;
+  background: linear-gradient(135deg, var(--deep-rose), var(--gold));
+  color:#fff; font-weight:600; font-size:1rem;
+  text-decoration:none; border:none; cursor:pointer;
+  position:relative; overflow:hidden;
+  transition: var(--transition);
+  box-shadow:0 8px 30px rgba(201,124,124,0.4);
+}
+.btn-primary::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg, var(--gold), var(--deep-rose));
+  opacity:0; transition: opacity 0.3s;
+}
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(201,124,124,0.5); }
+.btn-primary:hover::before { opacity:1; }
+.btn-primary span { position:relative; }
+.btn-ripple {
+  position:absolute; border-radius:50%;
+  background:rgba(255,255,255,0.4);
+  transform:scale(0); animation:ripple 0.6s linear;
+}
+@keyframes ripple { to{transform:scale(4); opacity:0} }
+.btn-outline {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:14px 32px; border-radius:50px;
+  border:2px solid var(--deep-rose);
+  color:var(--deep-rose); font-weight:600; font-size:1rem;
+  text-decoration:none; background:transparent; cursor:pointer;
+  transition: var(--transition);
+}
+.btn-outline:hover {
+  background:var(--deep-rose); color:#fff;
+  transform:translateY(-3px);
+  box-shadow:0 14px 40px rgba(201,124,124,0.3);
+}
+.hero-stats {
+  display:flex; gap:32px; margin-top:40px;
+  animation: fadeSlideUp 0.8s 0.8s ease both;
+}
+.stat { text-align:center; }
+.stat-num {
+  font-family:'Cormorant Garamond', serif;
+  font-size:2rem; font-weight:700;
+  background:linear-gradient(135deg, var(--choco), var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.stat-label { font-size:0.78rem; color:var(--text-soft); margin-top:2px; }
+.hero-image-wrap {
+  position:relative;
+  animation: fadeSlideRight 1s 0.4s ease both;
+}
+.hero-img-main {
+  width:100%; border-radius:30px;
+  box-shadow: 0 30px 80px rgba(92,61,46,0.2);
+  object-fit:cover; height:450px;
+  background: linear-gradient(135deg, #F8D7DA, #FDEBD0);
+  display:flex; align-items:center; justify-content:center;
+  font-size:8rem;
+}
+.hero-float-card {
+  position:absolute;
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(212,168,83,0.3);
+  border-radius:16px;
+  padding:12px 18px;
+  box-shadow:0 10px 40px rgba(92,61,46,0.15);
+  animation: cardFloat 4s ease-in-out infinite;
+}
+@keyframes cardFloat {
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+.hfc-1 { bottom:30px; left:-20px; }
+.hfc-2 { top:30px; right:-20px; animation-delay:2s; }
+.float-card-icon { font-size:1.4rem; margin-bottom:4px; }
+.float-card-val {
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.2rem; font-weight:700; color:var(--choco);
+}
+.float-card-label { font-size:0.7rem; color:var(--text-soft); }
+
+@keyframes fadeSlideUp {
+  from{opacity:0; transform:translateY(30px)}
+  to{opacity:1; transform:translateY(0)}
+}
+@keyframes fadeSlideRight {
+  from{opacity:0; transform:translateX(40px)}
+  to{opacity:1; transform:translateX(0)}
+}
+
+/* ─── SECTION BASE ─── */
+section { padding:100px 5%; position:relative; }
+.container { max-width:1200px; margin:0 auto; }
+.section-label {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:0.75rem; font-weight:700; letter-spacing:3px;
+  text-transform:uppercase; color:var(--gold);
+  margin-bottom:12px;
+}
+.section-title {
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:700; color:var(--text-dark);
+  line-height:1.2; margin-bottom:16px;
+}
+.section-sub {
+  font-size:1rem; color:var(--text-soft);
+  line-height:1.8; max-width:600px;
+}
+.reveal {
+  opacity:0; transform:translateY(40px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ─── OFFER BANNER ─── */
+#offer-banner {
+  background:linear-gradient(90deg, var(--deep-rose), var(--gold), var(--deep-rose));
+  background-size:200% 100%;
+  animation:bannerSlide 4s linear infinite;
+  color:#fff; text-align:center;
+  padding:12px; font-size:0.9rem;
+  font-weight:600; position:relative; z-index:999;
+  margin-top:70px;
+}
+@keyframes bannerSlide { 0%{background-position:0%} 100%{background-position:200%} }
+#offer-banner.hidden { display:none; }
+
+/* ─── ABOUT ─── */
+#about { background:var(--surface); }
+.about-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:60px; align-items:center;
+}
+.about-img-wrap {
+  position:relative; border-radius:var(--radius);
+  overflow:visible;
+}
+.about-img-placeholder {
+  width:100%; height:380px;
+  background:linear-gradient(135deg, var(--blush) 0%, var(--cream2) 100%);
+  border-radius:var(--radius);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  font-size:6rem; gap:16px;
+  box-shadow:var(--shadow);
+  border:3px solid rgba(212,168,83,0.2);
+}
+.about-deco-circle {
+  position:absolute; width:120px; height:120px;
+  background:linear-gradient(135deg, var(--gold-light), var(--blush));
+  border-radius:50%; opacity:0.4;
+  bottom:-20px; right:-20px; z-index:-1;
+}
+.about-features { display:flex; flex-direction:column; gap:20px; margin-top:32px; }
+.feature-item {
+  display:flex; gap:16px; align-items:flex-start;
+  padding:18px 22px;
+  background:var(--glass);
+  border-radius:14px;
+  border:1px solid rgba(212,168,83,0.2);
+  transition: var(--transition);
+}
+.feature-item:hover {
+  transform:translateX(6px);
+  box-shadow:var(--shadow);
+  border-color:var(--gold);
+}
+.feature-icon {
+  width:44px; height:44px; flex-shrink:0;
+  background:linear-gradient(135deg, var(--deep-rose), var(--gold));
+  border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem; color:#fff;
+}
+.feature-title { font-weight:700; color:var(--text-dark); font-size:1rem; margin-bottom:4px; }
+.feature-desc { font-size:0.85rem; color:var(--text-soft); line-height:1.6; }
+
+/* ─── COURSES ─── */
+#courses {
+  background:linear-gradient(180deg, var(--cream) 0%, var(--cream2) 100%);
+}
+.courses-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap:28px; margin-top:50px;
+}
+.course-card {
+  background:var(--surface);
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid rgba(212,168,83,0.2);
+  transition: var(--transition);
+  cursor:pointer;
+  position:relative;
+}
+.course-card:hover {
+  transform:translateY(-10px);
+  box-shadow:var(--shadow-hover);
+  border-color:var(--gold);
+}
+.course-card:hover .course-glow {
+  opacity:1;
+}
+.course-glow {
+  position:absolute; inset:0; border-radius:var(--radius);
+  background:linear-gradient(135deg, rgba(212,168,83,0.08), rgba(232,160,160,0.08));
+  opacity:0; transition:opacity 0.4s;
+}
+.course-img {
+  height:180px;
+  background:linear-gradient(135deg, var(--blush), var(--cream2));
+  display:flex; align-items:center; justify-content:center;
+  font-size:5rem;
+  position:relative; overflow:hidden;
+}
+.course-img::after {
+  content:''; position:absolute; bottom:0; left:0; right:0;
+  height:60px;
+  background:linear-gradient(transparent, var(--surface));
+}
+.course-tag {
+  position:absolute; top:14px; right:14px;
+  background:linear-gradient(135deg, var(--deep-rose), var(--gold));
+  color:#fff; font-size:0.7rem; font-weight:700;
+  padding:4px 12px; border-radius:20px; letter-spacing:1px;
+}
+.course-body { padding:24px; }
+.course-name {
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.4rem; font-weight:700;
+  color:var(--text-dark); margin-bottom:8px;
+}
+.course-desc { font-size:0.87rem; color:var(--text-soft); line-height:1.7; margin-bottom:16px; }
+.course-meta { display:flex; gap:20px; flex-wrap:wrap; }
+.course-meta-item {
+  display:flex; align-items:center; gap:6px;
+  font-size:0.8rem; color:var(--text-soft);
+}
+.course-meta-item i { color:var(--gold); }
+
+/* ─── GALLERY ─── */
+#gallery { background:var(--surface); }
+.gallery-tabs {
+  display:flex; gap:12px; flex-wrap:wrap;
+  margin-bottom:40px; margin-top:30px;
+}
+.tab-btn {
+  padding:10px 24px; border-radius:50px;
+  border:2px solid rgba(212,168,83,0.3);
+  background:transparent; color:var(--text-mid);
+  font-weight:600; font-size:0.88rem;
+  cursor:pointer; transition: var(--transition);
+}
+.tab-btn.active, .tab-btn:hover {
+  background:linear-gradient(135deg, var(--deep-rose), var(--gold));
+  color:#fff; border-color:transparent;
+  box-shadow:0 6px 20px rgba(201,124,124,0.3);
+}
+.gallery-panel { display:none; }
+.gallery-panel.active { display:block; }
+.gallery-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  gap:16px;
+}
+.gallery-item {
+  aspect-ratio:1;
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer;
+  position:relative;
+  background:linear-gradient(135deg, var(--blush), var(--cream2));
+  display:flex; align-items:center; justify-content:center;
+  font-size:4rem;
+  transition: var(--transition);
+}
+.gallery-item:hover { transform:scale(1.04); box-shadow:var(--shadow-hover); }
+.gallery-item:hover .gallery-overlay { opacity:1; }
+.gallery-overlay {
+  position:absolute; inset:0;
+  background:rgba(92,61,46,0.5);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transition:opacity 0.3s;
+  color:#fff; font-size:2rem;
+}
+.gallery-item img { width:100%; height:100%; object-fit:cover; }
+
+/* ─── LIGHTBOX ─── */
+#lightbox {
+  display:none; position:fixed; inset:0;
+  background:rgba(26,15,8,0.95); z-index:9000;
+  align-items:center; justify-content:center;
+  flex-direction:column;
+}
+#lightbox.open { display:flex; }
+#lightbox-img {
+  max-width:90vw; max-height:80vh;
+  border-radius:16px; object-fit:contain;
+}
+#lightbox-emoji {
+  font-size:10rem; line-height:1;
+}
+.lightbox-close {
+  position:absolute; top:20px; right:20px;
+  background:rgba(255,255,255,0.1); border:none;
+  color:#fff; font-size:1.5rem;
+  width:44px; height:44px; border-radius:50%;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:var(--transition);
+}
+.lightbox-close:hover { background:rgba(255,255,255,0.25); }
+.lightbox-nav {
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(255,255,255,0.1); border:none; color:#fff;
+  width:50px; height:50px; border-radius:50%;
+  cursor:pointer; font-size:1.2rem;
+  display:flex; align-items:center; justify-content:center;
+  transition:var(--transition);
+}
+.lightbox-nav:hover { background:rgba(255,255,255,0.25); }
+.lb-prev { left:20px; }
+.lb-next { right:20px; }
+
+/* ─── REVIEWS ─── */
+#reviews {
+  background:linear-gradient(145deg, var(--cream2) 0%, var(--cream) 100%);
+  overflow:hidden;
+}
+.rating-hero {
+  display:flex; align-items:center; gap:24px;
+  margin-bottom:50px; flex-wrap:wrap;
+}
+.big-rating {
+  font-family:'Cormorant Garamond', serif;
+  font-size:5rem; font-weight:700;
+  color:var(--gold); line-height:1;
+}
+.rating-stars { display:flex; gap:4px; font-size:1.4rem; color:var(--gold); margin:8px 0; }
+.rating-count { font-size:0.9rem; color:var(--text-soft); }
+.reviews-carousel {
+  display:flex; gap:24px;
+  overflow-x:auto; scroll-snap-type:x mandatory;
+  scrollbar-width:none; padding-bottom:20px;
+  -webkit-overflow-scrolling:touch;
+}
+.reviews-carousel::-webkit-scrollbar { display:none; }
+.review-card {
+  min-width:320px; max-width:360px;
+  background:var(--surface);
+  border-radius:var(--radius);
+  padding:28px;
+  border:1px solid rgba(212,168,83,0.2);
+  scroll-snap-align:start;
+  flex-shrink:0;
+  transition: var(--transition);
+  position:relative;
+}
+.review-card:hover { transform:translateY(-6px); box-shadow:var(--shadow); }
+.review-quote {
+  font-size:2rem; color:var(--gold);
+  font-family:'Cormorant Garamond', serif;
+  line-height:0.6; margin-bottom:12px;
+}
+.review-text { font-size:0.9rem; color:var(--text-soft); line-height:1.7; margin-bottom:20px; }
+.review-author { display:flex; align-items:center; gap:12px; }
+.review-avatar {
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg, var(--deep-rose), var(--gold));
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem; color:#fff; font-weight:700;
+  flex-shrink:0;
+}
+.review-name { font-weight:700; color:var(--text-dark); font-size:0.92rem; }
+.review-date { font-size:0.75rem; color:var(--text-soft); }
+.review-stars { display:flex; gap:2px; color:var(--gold); font-size:0.8rem; margin-top:2px; }
+.carousel-dots {
+  display:flex; gap:8px; justify-content:center; margin-top:28px;
+}
+.dot {
+  width:8px; height:8px; border-radius:50%;
+  background:rgba(212,168,83,0.3); cursor:pointer;
+  transition:var(--transition);
+}
+.dot.active { background:var(--gold); width:24px; border-radius:4px; }
+
+/* ─── CONTACT ─── */
+#contact { background:var(--surface); }
+.contact-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:50px; align-items:start;
+}
+.map-wrap {
+  border-radius:var(--radius); overflow:hidden;
+  box-shadow:var(--shadow); height:380px;
+  position:relative;
+}
+.map-wrap iframe { width:100%; height:100%; border:none; }
+.contact-info { display:flex; flex-direction:column; gap:24px; }
+.info-item {
+  display:flex; gap:16px; align-items:flex-start;
+  padding:20px; background:var(--glass);
+  border-radius:14px; border:1px solid rgba(212,168,83,0.2);
+  transition:var(--transition);
+}
+.info-item:hover { border-color:var(--gold); transform:translateX(6px); }
+.info-icon {
+  width:48px; height:48px; flex-shrink:0;
+  background:linear-gradient(135deg, var(--deep-rose), var(--gold));
+  border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:1.1rem;
+}
+.info-label { font-size:0.75rem; color:var(--text-soft); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+.info-val { font-weight:600; color:var(--text-dark); font-size:0.95rem; line-height:1.6; }
+.wa-btn {
+  display:inline-flex; align-items:center; gap:10px;
+  padding:14px 28px; border-radius:50px;
+  background:linear-gradient(135deg, #25D366, #128C7E);
+  color:#fff; font-weight:700; font-size:1rem;
+  text-decoration:none; transition:var(--transition);
+  box-shadow:0 8px 25px rgba(37,211,102,0.4);
+}
+.wa-btn:hover { transform:translateY(-3px); box-shadow:0 14px 35px rgba(37,211,102,0.5); }
+
+/* ─── CTA ─── */
+#cta {
+  background:linear-gradient(135deg, var(--choco) 0%, var(--choco-light) 100%);
+  text-align:center; padding:100px 5%;
+  position:relative; overflow:hidden;
+}
+#cta::before {
+  content:''; position:absolute; inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.cta-content { position:relative; z-index:1; max-width:700px; margin:0 auto; }
+.cta-emoji { font-size:3.5rem; margin-bottom:20px; display:block;
+  animation:bounceScale 1.5s ease-in-out infinite alternate; }
+.cta-title {
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(2rem,4vw,3.2rem);
+  color:#fff; font-weight:700; margin-bottom:16px;
+}
+.cta-sub { color:rgba(255,255,255,0.7); font-size:1.05rem; margin-bottom:36px; line-height:1.7; }
+
+/* ─── FOOTER ─── */
+footer {
+  background:var(--choco);
+  color:rgba(255,255,255,0.7);
+  padding:50px 5% 24px;
+}
+.footer-grid {
+  display:grid; grid-template-columns:2fr 1fr 1fr;
+  gap:40px; margin-bottom:40px;
+}
+.footer-brand .brand-name {
+  font-family:'Pacifico', cursive;
+  font-size:1.6rem;
+  background:linear-gradient(135deg, #fff, var(--gold-light));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text; margin-bottom:14px; display:block;
+}
+.footer-brand p { font-size:0.88rem; line-height:1.8; max-width:280px; }
+.footer-col h4 { color:#fff; font-weight:700; margin-bottom:18px; font-size:1rem; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-col ul a { color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.88rem; transition:var(--transition); }
+.footer-col ul a:hover { color:var(--gold-light); padding-left:6px; }
+.social-links { display:flex; gap:12px; margin-top:20px; }
+.social-link {
+  width:38px; height:38px; border-radius:50%;
+  background:rgba(255,255,255,0.1);
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:0.9rem;
+  text-decoration:none; transition:var(--transition);
+}
+.social-link:hover { background:var(--gold); transform:translateY(-3px); }
+.footer-bottom {
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:24px; text-align:center;
+  font-size:0.82rem;
+}
+
+/* ─── FLOATING BTNS ─── */
+.floating-btns {
+  position:fixed; bottom:30px; right:24px;
+  display:flex; flex-direction:column; gap:12px;
+  z-index:800;
+}
+.fb-btn {
+  width:52px; height:52px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; text-decoration:none; border:none;
+  cursor:pointer; transition: var(--transition);
+  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  position:relative;
+}
+.fb-btn:hover { transform:scale(1.1) translateY(-3px); }
+.fb-wa { background:linear-gradient(135deg,#25D366,#128C7E); color:#fff; }
+.fb-call { background:linear-gradient(135deg, var(--deep-rose), var(--gold)); color:#fff; }
+.fb-tip {
+  position:absolute; right:62px; top:50%; transform:translateY(-50%);
+  background:var(--choco); color:#fff;
+  padding:6px 12px; border-radius:8px;
+  font-size:0.75rem; font-weight:600;
+  white-space:nowrap; pointer-events:none;
+  opacity:0; transition:opacity 0.2s;
+}
+.fb-btn:hover .fb-tip { opacity:1; }
+.fb-pulse::before {
+  content:''; position:absolute; inset:-6px;
+  border-radius:50%;
+  background:rgba(37,211,102,0.3);
+  animation:pulse 2s ease-out infinite;
+}
+@keyframes pulse { 0%{transform:scale(1); opacity:1} 100%{transform:scale(1.8); opacity:0} }
+
+/* ─── ADMIN PANEL ─── */
+#admin-modal {
+  display:none; position:fixed; inset:0;
+  background:rgba(26,15,8,0.9); z-index:9500;
+  align-items:center; justify-content:center;
+  backdrop-filter:blur(10px);
+}
+#admin-modal.open { display:flex; }
+.admin-box {
+  background:var(--surface);
+  border-radius:24px; width:min(90vw,1100px);
+  max-height:92vh; overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,0.4);
+  display:flex; flex-direction:column;
+}
+.admin-header {
+  background:linear-gradient(135deg, var(--choco), var(--choco-light));
+  padding:20px 28px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.admin-title {
+  font-family:'Pacifico', cursive;
+  color:#fff; font-size:1.2rem;
+}
+.admin-close {
+  background:rgba(255,255,255,0.15); border:none; color:#fff;
+  width:36px; height:36px; border-radius:50%;
+  cursor:pointer; font-size:1rem;
+  display:flex; align-items:center; justify-content:center;
+  transition:var(--transition);
+}
+.admin-close:hover { background:rgba(255,255,255,0.3); }
+.admin-body { display:flex; flex:1; overflow:hidden; }
+.admin-sidebar {
+  width:220px; flex-shrink:0;
+  background:var(--glass);
+  border-right:1px solid rgba(212,168,83,0.2);
+  padding:20px 0; overflow-y:auto;
+}
+.admin-nav-item {
+  display:flex; align-items:center; gap:10px;
+  padding:12px 20px; cursor:pointer;
+  color:var(--text-mid); font-size:0.88rem; font-weight:500;
+  transition:var(--transition); border-left:3px solid transparent;
+}
+.admin-nav-item:hover, .admin-nav-item.active {
+  background:rgba(212,168,83,0.1);
+  color:var(--choco); border-left-color:var(--gold);
+}
+.admin-nav-item i { width:18px; text-align:center; }
+.admin-content { flex:1; overflow-y:auto; padding:28px; }
+
+/* Admin Login */
+#admin-login {
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  height:100%; gap:20px; padding:40px;
+}
+.admin-login-icon { font-size:3rem; }
+.admin-login-title {
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.8rem; color:var(--text-dark);
+}
+.admin-input {
+  width:100%; max-width:360px;
+  padding:12px 18px; border-radius:12px;
+  border:2px solid rgba(212,168,83,0.3);
+  background:var(--glass);
+  color:var(--text-dark); font-size:0.95rem;
+  transition:var(--transition); outline:none;
+  font-family:'DM Sans', sans-serif;
+}
+.admin-input:focus { border-color:var(--gold); }
+.admin-panel-section { display:none; }
+.admin-panel-section.active { display:block; }
+.admin-panel-title {
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.6rem; font-weight:700;
+  color:var(--text-dark); margin-bottom:24px;
+}
+
+/* Admin Form Elements */
+.admin-label {
+  display:block; font-size:0.8rem; font-weight:600;
+  color:var(--text-mid); margin-bottom:6px;
+  text-transform:uppercase; letter-spacing:1px;
+}
+.admin-textarea {
+  width:100%; padding:12px 16px;
+  border-radius:12px;
+  border:2px solid rgba(212,168,83,0.3);
+  background:var(--glass); color:var(--text-dark);
+  font-size:0.9rem; resize:vertical; min-height:100px;
+  font-family:'DM Sans',sans-serif; outline:none;
+  transition:var(--transition);
+}
+.admin-textarea:focus { border-color:var(--gold); }
+.admin-select {
+  width:100%; padding:10px 14px;
+  border-radius:10px; border:2px solid rgba(212,168,83,0.3);
+  background:var(--surface); color:var(--text-dark);
+  font-size:0.9rem; outline:none; cursor:pointer;
+}
+.form-group { margin-bottom:18px; }
+.btn-save {
+  background:linear-gradient(135deg, var(--deep-rose), var(--gold));
+  color:#fff; border:none; padding:10px 24px;
+  border-radius:10px; font-weight:600;
+  cursor:pointer; transition:var(--transition);
+  font-size:0.9rem;
+}
+.btn-save:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(201,124,124,0.4); }
+.btn-danger {
+  background:linear-gradient(135deg, #E74C3C, #C0392B);
+  color:#fff; border:none; padding:6px 14px;
+  border-radius:8px; font-size:0.78rem;
+  cursor:pointer; transition:var(--transition);
+}
+.btn-danger:hover { transform:scale(1.05); }
+
+/* Offers list */
+.offer-list { display:flex; flex-direction:column; gap:12px; margin-top:20px; }
+.offer-item {
+  display:flex; align-items:center; gap:12px;
+  padding:14px; background:var(--glass);
+  border-radius:12px; border:1px solid rgba(212,168,83,0.2);
+}
+.offer-text { flex:1; font-size:0.9rem; color:var(--text-dark); }
+.offer-badge {
+  padding:3px 10px; border-radius:20px; font-size:0.72rem; font-weight:700;
+}
+.offer-badge.active { background:#D5F5E3; color:#27AE60; }
+.offer-badge.inactive { background:#FADBD8; color:#E74C3C; }
+.offer-actions { display:flex; gap:8px; }
+.toggle-btn {
+  background:rgba(212,168,83,0.15); border:none;
+  padding:5px 12px; border-radius:8px;
+  font-size:0.78rem; cursor:pointer; color:var(--gold);
+  transition:var(--transition);
+}
+.toggle-btn:hover { background:rgba(212,168,83,0.3); }
+
+/* Review list in admin */
+.review-admin-item {
+  padding:16px; background:var(--glass);
+  border-radius:12px; border:1px solid rgba(212,168,83,0.2);
+  margin-bottom:12px;
+}
+.review-admin-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.review-admin-name { font-weight:700; color:var(--text-dark); font-size:0.9rem; }
+.review-admin-text { font-size:0.85rem; color:var(--text-soft); line-height:1.6; }
+
+/* Drag drop */
+.drop-zone {
+  border:2px dashed rgba(212,168,83,0.5);
+  border-radius:16px; padding:40px;
+  text-align:center; cursor:pointer;
+  transition:var(--transition); margin-bottom:20px;
+}
+.drop-zone:hover, .drop-zone.dragover {
+  border-color:var(--gold);
+  background:rgba(212,168,83,0.05);
+}
+.drop-zone-icon { font-size:2.5rem; margin-bottom:10px; }
+.drop-zone-text { font-size:0.9rem; color:var(--text-soft); }
+.uploaded-imgs {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(100px,1fr));
+  gap:10px; margin-top:16px;
+}
+.uploaded-img-item {
+  aspect-ratio:1; border-radius:10px;
+  background:linear-gradient(135deg, var(--blush), var(--cream2));
+  display:flex; align-items:center; justify-content:center;
+  font-size:2rem; position:relative;
+  cursor:pointer; overflow:hidden;
+  border:2px solid rgba(212,168,83,0.2);
+}
+.uploaded-img-item img { width:100%; height:100%; object-fit:cover; }
+.uploaded-img-del {
+  position:absolute; top:4px; right:4px;
+  background:rgba(231,76,60,0.85); color:#fff;
+  border:none; border-radius:50%;
+  width:22px; height:22px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.65rem; cursor:pointer;
+  opacity:0; transition:opacity 0.2s;
+}
+.uploaded-img-item:hover .uploaded-img-del { opacity:1; }
+
+/* Success toast */
+.toast {
+  position:fixed; bottom:100px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--choco); color:#fff;
+  padding:12px 24px; border-radius:50px;
+  font-size:0.9rem; font-weight:600;
+  z-index:99999; opacity:0; transition:all 0.4s ease;
+  pointer-events:none;
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+  .hero-content { grid-template-columns:1fr; gap:40px; }
+  .hero-image-wrap { max-width:500px; margin:0 auto; }
+  .about-grid { grid-template-columns:1fr; }
+  .contact-grid { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+  .admin-sidebar { width:180px; }
+}
+@media(max-width:650px) {
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  section { padding:70px 4%; }
+  .hero-stats { gap:20px; }
+  .hero-stats .stat-num { font-size:1.5rem; }
+  .footer-grid { grid-template-columns:1fr; }
+  .admin-body { flex-direction:column; }
+  .admin-sidebar { width:100%; height:auto; border-right:none; border-bottom:1px solid rgba(212,168,83,0.2); padding:10px 0; display:flex; overflow-x:auto; }
+  .admin-nav-item { flex-direction:column; gap:4px; min-width:80px; text-align:center; border-left:none; border-bottom:3px solid transparent; font-size:0.72rem; }
+  .admin-nav-item.active { border-bottom-color:var(--gold); border-left-color:transparent; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── LOADER ─── -->
+<div id="loader">
+  <div class="loader-cake">🎂</div>
+  <div class="loader-text">Cake Science</div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- ─── PARTICLES ─── -->
+<div class="particles" id="particles"></div>
+
+<!-- ─── TOAST ─── -->
+<div class="toast" id="toast"></div>
+
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar">
+  <a href="#hero" class="nav-brand">
+    <span class="logo-icon">🎂</span>
+    <span class="brand-name">Cake Science</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-theme" id="themeToggle" title="Toggle dark mode">🌙</button>
+    <button class="btn-admin-nav" onclick="openAdmin()">⚙️ Admin</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#courses" onclick="closeMobile()">Courses</a>
+  <a href="#gallery" onclick="closeMobile()">Gallery</a>
+  <a href="#reviews" onclick="closeMobile()">Reviews</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ─── OFFER BANNER ─── -->
+<div id="offer-banner" class="hidden">🎉 Special Offer Loading...</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg-decor">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">🎂 Andaman's Premier Baking Institute</div>
+      <h1 class="hero-title">
+        Learn Baking<br><span class="highlight">Like a Pro</span> 🎂
+      </h1>
+      <p class="hero-sub" id="hero-sub-text">
+        Join <strong>Cake Science Baking Classes</strong> in Andaman — where passion meets technique. Expert-led workshops in a hygienic, friendly environment in the heart of Sri Vijaya Puram.
+      </p>
+      <div class="hero-btns">
+        <a href="#courses" class="btn-primary" onclick="ripple(event)">
+          <span>🎓 Join Now</span>
+        </a>
+        <a href="#courses" class="btn-outline">📚 View Courses</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num counter" data-target="25">0</div>
+          <div class="stat-label">⭐ Reviews</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num counter-dec" data-target="4.8">0</div>
+          <div class="stat-label">★ Rating</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num counter" data-target="3">0</div>
+          <div class="stat-label">🍰 Courses</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num counter" data-target="100">0</div>
+          <div class="stat-label">👩‍🍳 Students+</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <div class="hero-img-main">🎂</div>
+      <div class="hero-float-card hfc-1">
+        <div class="float-card-icon">⭐</div>
+        <div class="float-card-val">4.8 / 5</div>
+        <div class="float-card-label">Average Rating</div>
+      </div>
+      <div class="hero-float-card hfc-2">
+        <div class="float-card-icon">🎓</div>
+        <div class="float-card-val">3 Courses</div>
+        <div class="float-card-label">Available Now</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-img-placeholder">
+          <span>👩‍🍳</span>
+          <span style="font-size:1rem;font-family:'DM Sans';color:var(--text-soft);">Our Baking Studio</span>
+        </div>
+        <div class="about-deco-circle"></div>
+      </div>
+      <div class="reveal">
+        <div class="section-label">✨ Our Story</div>
+        <h2 class="section-title" id="about-title">About <span style="background:linear-gradient(135deg,var(--deep-rose),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Cake Science</span></h2>
+        <p class="section-sub" id="about-text">
+          Nestled in the beautiful Andaman Islands, Cake Science is dedicated to bringing the joy of baking to everyone. Our hands-on classes combine traditional techniques with modern artistry, ensuring every student leaves with real skills and delicious creations. We believe baking is both a science and an art — and we're here to teach you both.
+        </p>
+        <div class="about-features" id="about-features">
+          <div class="feature-item">
+            <div class="feature-icon">👨‍🍳</div>
+            <div>
+              <div class="feature-title">Skilled Instructor</div>
+              <div class="feature-desc">Learn from an experienced, passionate baker with years of professional expertise.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">✨</div>
+            <div>
+              <div class="feature-title">Hygienic Environment</div>
+              <div class="feature-desc">State-of-the-art, spotlessly clean baking studio ensuring the highest hygiene standards.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🤝</div>
+            <div>
+              <div class="feature-title">Friendly Learning</div>
+              <div class="feature-desc">A warm, encouraging atmosphere where beginners feel welcome and confident.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COURSES ─── -->
+<section id="courses">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <div class="section-label">🎓 What We Offer</div>
+      <h2 class="section-title">Our <span style="background:linear-gradient(135deg,var(--deep-rose),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Courses</span></h2>
+      <p class="section-sub" style="margin:0 auto;">From beginner bread baking to advanced cake decoration — there's a class for every skill level.</p>
+    </div>
+    <div class="courses-grid" id="courses-grid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ─── -->
+<section id="gallery">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">📸 Our Work</div>
+      <h2 class="section-title">Photo <span style="background:linear-gradient(135deg,var(--deep-rose),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Gallery</span></h2>
+    </div>
+    <div class="gallery-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('cakes',this)">🎂 Cakes Gallery</button>
+      <button class="tab-btn" onclick="switchTab('products',this)">🛒 Products Range</button>
+      <button class="tab-btn" onclick="switchTab('studio',this)">🔧 Studio & Equipment</button>
+    </div>
+    <div class="gallery-panel active" id="panel-cakes">
+      <div class="gallery-grid" id="gallery-cakes"></div>
+    </div>
+    <div class="gallery-panel" id="panel-products">
+      <div class="gallery-grid" id="gallery-products"></div>
+    </div>
+    <div class="gallery-panel" id="panel-studio">
+      <div class="gallery-grid" id="gallery-studio"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LIGHTBOX ─── -->
+<div id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fa fa-times"></i></button>
+  <button class="lightbox-nav lb-prev" onclick="lightboxNav(-1)"><i class="fa fa-chevron-left"></i></button>
+  <div id="lightbox-emoji" style="text-align:center;"></div>
+  <button class="lightbox-nav lb-next" onclick="lightboxNav(1)"><i class="fa fa-chevron-right"></i></button>
+</div>
+
+<!-- ─── REVIEWS ─── -->
+<section id="reviews">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">💬 What People Say</div>
+      <h2 class="section-title">Student <span style="background:linear-gradient(135deg,var(--deep-rose),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Reviews</span></h2>
+    </div>
+    <div class="rating-hero reveal">
+      <div>
+        <div class="big-rating" id="avg-rating">4.8</div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-count" id="review-count">Based on 25 reviews</div>
+      </div>
+      <div style="height:80px;width:2px;background:rgba(212,168,83,0.3)"></div>
+      <div>
+        <div style="font-size:1rem;color:var(--text-dark);font-weight:600;margin-bottom:6px;">Why students love us</div>
+        <div style="font-size:0.88rem;color:var(--text-soft);">✅ Expert guidance &nbsp; ✅ Hygienic studio<br>✅ Small batches &nbsp;&nbsp;&nbsp; ✅ Certificate given</div>
+      </div>
+    </div>
+    <div class="reviews-carousel" id="reviews-carousel"></div>
+    <div class="carousel-dots" id="carousel-dots"></div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:50px;" class="reveal">
+      <div class="section-label">📍 Find Us</div>
+      <h2 class="section-title">Get In <span style="background:linear-gradient(135deg,var(--deep-rose),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Touch</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="map-wrap reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=Sri+Vijaya+Puram+Andaman&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div class="contact-info reveal">
+        <div class="info-item">
+          <div class="info-icon"><i class="fa fa-map-marker-alt"></i></div>
+          <div>
+            <div class="info-label">Address</div>
+            <div class="info-val" id="contact-address">Phongy Chang, DAG Colony,<br>Sri Vijaya Puram, Andaman &amp; Nicobar Islands – 744101</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa fa-phone"></i></div>
+          <div>
+            <div class="info-label">Phone / WhatsApp</div>
+            <div class="info-val" id="contact-phone">09933223123</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa fa-clock"></i></div>
+          <div>
+            <div class="info-label">Class Hours</div>
+            <div class="info-val">Mon–Sat: 9:00 AM – 6:00 PM</div>
+          </div>
+        </div>
+        <a href="https://wa.me/919933223123" class="wa-btn" target="_blank">
+          <i class="fab fa-whatsapp" style="font-size:1.3rem"></i>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-content reveal">
+      <span class="cta-emoji">🍰</span>
+      <h2 class="cta-title">Start Your Baking Journey Today</h2>
+      <p class="cta-sub">Join hundreds of happy students who have discovered the joy of baking at Cake Science. Enroll now and bake your first masterpiece!</p>
+      <a href="https://wa.me/919933223123" class="btn-primary" style="display:inline-flex;" onclick="ripple(event)">
+        <span>🎂 Enroll Now — It's Fun!</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-name">Cake Science</span>
+      <p>Baking Class Andaman — where every student discovers the artist within. Hygienic, fun, and professional baking classes in Sri Vijaya Puram.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://wa.me/919933223123" class="social-link" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Cake Science – Baking Class Andaman. All rights reserved. &nbsp;|&nbsp; Phongy Chang, DAG Colony, Sri Vijaya Puram – 744101 &nbsp;|&nbsp; 📞 09933223123</p>
+  </div>
+</footer>
+
+<!-- ─── FLOATING BUTTONS ─── -->
+<div class="floating-btns">
+  <a href="https://wa.me/919933223123" class="fb-btn fb-wa fb-pulse" title="WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fb-tip">WhatsApp Us</span>
+  </a>
+  <a href="tel:09933223123" class="fb-btn fb-call" title="Call Now">
+    <i class="fas fa-phone"></i>
+    <span class="fb-tip">Call Now</span>
+  </a>
+</div>
+
+<!-- ─── ADMIN MODAL ─── -->
+<div id="admin-modal">
+  <div class="admin-box">
+    <div class="admin-header">
+      <div class="admin-title">🎂 Admin Dashboard</div>
+      <button class="admin-close" onclick="closeAdmin()"><i class="fa fa-times"></i></button>
+    </div>
+    <!-- Login Screen -->
+    <div id="admin-login">
+      <div class="admin-login-icon">🔐</div>
+      <div class="admin-login-title">Admin Login</div>
+      <input type="text" class="admin-input" id="login-user" placeholder="Username" autocomplete="off">
+      <input type="password" class="admin-input" id="login-pass" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="btn-primary" onclick="doLogin()" style="display:inline-flex;"><span>🔓 Login</span></button>
+      <div id="login-err" style="color:#E74C3C;font-size:0.85rem;display:none;">❌ Invalid credentials</div>
+    </div>
+    <!-- Dashboard -->
+    <div id="admin-dashboard" style="display:none;flex:1;overflow:hidden;display:none;flex-direction:row;">
+      <div class="admin-sidebar">
+        <div class="admin-nav-item active" onclick="adminSection('dashboard',this)"><i class="fa fa-tachometer-alt"></i> Dashboard</div>
+        <div class="admin-nav-item" onclick="adminSection('offers',this)"><i class="fa fa-tag"></i> Offers</div>
+        <div class="admin-nav-item" onclick="adminSection('gallery-mgmt',this)"><i class="fa fa-images"></i> Gallery</div>
+        <div class="admin-nav-item" onclick="adminSection('content',this)"><i class="fa fa-edit"></i> Content</div>
+        <div class="admin-nav-item" onclick="adminSection('courses-mgmt',this)"><i class="fa fa-graduation-cap"></i> Courses</div>
+        <div class="admin-nav-item" onclick="adminSection('reviews-mgmt',this)"><i class="fa fa-star"></i> Reviews</div>
+        <div class="admin-nav-item" onclick="adminSection('settings',this)"><i class="fa fa-cog"></i> Settings</div>
+      </div>
+      <div class="admin-content">
+        <!-- Dashboard -->
+        <div class="admin-panel-section active" id="panel-dashboard">
+          <div class="admin-panel-title">👋 Welcome to Admin</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px;">
+            <div style="background:linear-gradient(135deg,var(--deep-rose),var(--gold));border-radius:16px;padding:20px;color:#fff;text-align:center;">
+              <div style="font-size:2rem;font-weight:700;font-family:'Cormorant Garamond',serif" id="dash-reviews">-</div>
+              <div style="font-size:0.8rem;opacity:0.85">Total Reviews</div>
+            </div>
+            <div style="background:linear-gradient(135deg,var(--choco),var(--choco-light));border-radius:16px;padding:20px;color:#fff;text-align:center;">
+              <div style="font-size:2rem;font-weight:700;font-family:'Cormorant Garamond',serif" id="dash-offers">-</div>
+              <div style="font-size:0.8rem;opacity:0.85">Active Offers</div>
+            </div>
+            <div style="background:linear-gradient(135deg,#27AE60,#1E8449);border-radius:16px;padding:20px;color:#fff;text-align:center;">
+              <div style="font-size:2rem;font-weight:700;font-family:'Cormorant Garamond',serif" id="dash-images">-</div>
+              <div style="font-size:0.8rem;opacity:0.85">Gallery Images</div>
+            </div>
+          </div>
+          <div style="font-size:0.88rem;color:var(--text-soft);">Use the sidebar to manage your website content. All changes are saved locally and reflected on the website instantly.</div>
+        </div>
+        <!-- Offers -->
+        <div class="admin-panel-section" id="panel-offers">
+          <div class="admin-panel-title">🎁 Manage Offers</div>
+          <div class="form-group">
+            <label class="admin-label">New Offer Text</label>
+            <input type="text" class="admin-input" id="new-offer-text" placeholder="e.g. 🎉 10% OFF on Baking Course this month!" style="max-width:100%">
+          </div>
+          <button class="btn-save" onclick="addOffer()">➕ Add Offer</button>
+          <div class="offer-list" id="offer-list"></div>
+        </div>
+        <!-- Gallery Management -->
+        <div class="admin-panel-section" id="panel-gallery-mgmt">
+          <div class="admin-panel-title">🖼️ Gallery Management</div>
+          <div class="form-group">
+            <label class="admin-label">Select Gallery</label>
+            <select class="admin-select" id="gallery-select" onchange="renderAdminGallery()">
+              <option value="cakes">🎂 Cakes Gallery</option>
+              <option value="products">🛒 Products Range</option>
+              <option value="studio">🔧 Studio & Equipment</option>
+            </select>
+          </div>
+          <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()"
+            ondragover="event.preventDefault();this.classList.add('dragover')"
+            ondragleave="this.classList.remove('dragover')"
+            ondrop="handleDrop(event)">
+            <div class="drop-zone-icon">📂</div>
+            <div class="drop-zone-text">Click to upload or drag & drop images here<br><small>PNG, JPG, WEBP supported</small></div>
+          </div>
+          <input type="file" id="file-input" multiple accept="image/*" style="display:none" onchange="handleFileInput(event)">
+          <div class="uploaded-imgs" id="admin-gallery-preview"></div>
+        </div>
+        <!-- Content -->
+        <div class="admin-panel-section" id="panel-content">
+          <div class="admin-panel-title">📝 Edit Content</div>
+          <div class="form-group">
+            <label class="admin-label">Hero Subtitle</label>
+            <input type="text" class="admin-input" id="edit-hero-sub" style="max-width:100%">
+          </div>
+          <div class="form-group">
+            <label class="admin-label">About Section Title</label>
+            <input type="text" class="admin-input" id="edit-about-title" style="max-width:100%">
+          </div>
+          <div class="form-group">
+            <label class="admin-label">About Description</label>
+            <textarea class="admin-textarea" id="edit-about-text" rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="admin-label">Phone Number</label>
+            <input type="text" class="admin-input" id="edit-phone" style="max-width:100%">
+          </div>
+          <div class="form-group">
+            <label class="admin-label">Address</label>
+            <textarea class="admin-textarea" id="edit-address" rows="2"></textarea>
+          </div>
+          <button class="btn-save" onclick="saveContent()">💾 Save All Changes</button>
+        </div>
+        <!-- Courses Management -->
+        <div class="admin-panel-section" id="panel-courses-mgmt">
+          <div class="admin-panel-title">🎓 Manage Courses</div>
+          <div id="courses-admin-list"></div>
+          <hr style="margin:20px 0;border-color:rgba(212,168,83,0.2)">
+          <div style="font-weight:700;color:var(--text-dark);margin-bottom:14px;">➕ Add New Course</div>
+          <div class="form-group">
+            <label class="admin-label">Course Name</label>
+            <input type="text" class="admin-input" id="new-course-name" placeholder="e.g. Advanced Fondant Artistry" style="max-width:100%">
+          </div>
+          <div class="form-group">
+            <label class="admin-label">Description</label>
+            <textarea class="admin-textarea" id="new-course-desc" rows="2" placeholder="Short description..."></textarea>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="form-group">
+            <div>
+              <label class="admin-label">Duration</label>
+              <input type="text" class="admin-input" id="new-course-dur" placeholder="e.g. 10 Days" style="max-width:100%">
+            </div>
+            <div>
+              <label class="admin-label">Level</label>
+              <input type="text" class="admin-input" id="new-course-level" placeholder="e.g. Beginner" style="max-width:100%">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="admin-label">Emoji Icon</label>
+            <input type="text" class="admin-input" id="new-course-emoji" placeholder="🎂" style="max-width:100px">
+          </div>
+          <button class="btn-save" onclick="addCourse()">➕ Add Course</button>
+        </div>
+        <!-- Reviews Management -->
+        <div class="admin-panel-section" id="panel-reviews-mgmt">
+          <div class="admin-panel-title">⭐ Manage Reviews</div>
+          <div id="reviews-admin-list"></div>
+          <hr style="margin:20px 0;border-color:rgba(212,168,83,0.2)">
+          <div style="font-weight:700;color:var(--text-dark);margin-bottom:14px;">➕ Add Review</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="form-group">
+            <div>
+              <label class="admin-label">Name</label>
+              <input type="text" class="admin-input" id="new-review-name" placeholder="Student Name" style="max-width:100%">
+            </div>
+            <div>
+              <label class="admin-label">Rating (1-5)</label>
+              <input type="number" class="admin-input" id="new-review-rating" min="1" max="5" value="5" style="max-width:100%">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="admin-label">Review Text</label>
+            <textarea class="admin-textarea" id="new-review-text" rows="3" placeholder="Amazing class..."></textarea>
+          </div>
+          <button class="btn-save" onclick="addReview()">➕ Add Review</button>
+        </div>
+        <!-- Settings -->
+        <div class="admin-panel-section" id="panel-settings">
+          <div class="admin-panel-title">⚙️ Settings</div>
+          <div style="background:var(--glass);border-radius:16px;padding:24px;border:1px solid rgba(212,168,83,0.2);">
+            <div style="font-weight:700;color:var(--text-dark);margin-bottom:18px;">🔐 Change Login Credentials</div>
+            <div class="form-group">
+              <label class="admin-label">New Username</label>
+              <input type="text" class="admin-input" id="new-username" style="max-width:100%">
+            </div>
+            <div class="form-group">
+              <label class="admin-label">New Password</label>
+              <input type="password" class="admin-input" id="new-password" style="max-width:100%">
+            </div>
+            <div class="form-group">
+              <label class="admin-label">Confirm Password</label>
+              <input type="password" class="admin-input" id="confirm-password" style="max-width:100%">
+            </div>
+            <button class="btn-save" onclick="changeCredentials()">💾 Update Credentials</button>
+          </div>
+          <div style="margin-top:20px;background:var(--glass);border-radius:16px;padding:24px;border:1px solid rgba(212,168,83,0.2);">
+            <div style="font-weight:700;color:var(--text-dark);margin-bottom:14px;">🗑️ Reset Data</div>
+            <button class="btn-danger" onclick="if(confirm('Reset ALL data to defaults?'))resetData()">Reset to Defaults</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── STATE ───
+const DEFAULT_STATE = {
+  creds: { user:'admin', pass:'cakescience123' },
+  offers: [
+    { id:1, text:'🎉 Enroll now and get a FREE Recipe Book with any course!', active:true },
+    { id:2, text:'🎂 10% OFF on 10-Day Baking Workshop this month!', active:true }
+  ],
+  reviews: [
+    { id:1, name:'Priya Sharma', rating:5, text:'Amazing instructor and such a hygienic environment! I learned so much about cake decoration in just a few days. Highly recommend to anyone in Andaman!', date:'March 2025' },
+    { id:2, name:'Rohan Das', rating:5, text:'The cakes we made here were absolutely delicious and yummy! The instructor is very patient and explains everything clearly. Best baking class in Andaman!', date:'Feb 2025' },
+    { id:3, name:'Anika Paul', rating:5, text:'I enrolled in the 10-Day Workshop and it was life-changing. The studio is super clean and the learning environment is incredibly friendly.', date:'Jan 2025' },
+    { id:4, name:'Meena Singh', rating:4, text:'Wonderful experience! Learned bread making from scratch. The instructor\'s passion really shows in every class. Loved every moment!', date:'Dec 2024' },
+    { id:5, name:'Sanjay Rao', rating:5, text:'My daughter joined the cake decoration course and absolutely loved it. She came home with beautifully decorated cakes every day!', date:'Nov 2024' }
+  ],
+  courses: [
+    { id:1, name:'10-Day Baking Workshop', desc:'A comprehensive workshop covering essential baking techniques from scratch. Perfect for beginners ready to master the basics of baking.', dur:'10 Days', level:'Beginner', emoji:'🎂', tag:'Popular' },
+    { id:2, name:'Cake Decoration Course', desc:'Elevate your cakes with stunning decorations. Learn fondant art, piping, color theory, and professional finishing techniques.', dur:'7 Days', level:'All Levels', emoji:'🎨', tag:'Trending' },
+    { id:3, name:'Bread Making Classes', desc:'Discover the science of bread — from sourdough starters to artisan loaves. Bake like a French patissier from day one.', dur:'5 Days', level:'Intermediate', emoji:'🍞', tag:'New' }
+  ],
+  gallery: {
+    cakes: ['🎂','🎂','🍰','🧁','🎂','🍰','🧁','🎂','🍰'],
+    products: ['🧁','🍪','🍩','🎂','🍫','🧁','🍰','🍪','🍩'],
+    studio: ['🔧','🏪','👩‍🍳','🔧','🏪','👩‍🍳','🔧','🏪','👩‍🍳']
+  },
+  content: {
+    heroSub: 'Join Cake Science Baking Classes in Andaman — where passion meets technique. Expert-led workshops in a hygienic, friendly environment in the heart of Sri Vijaya Puram.',
+    aboutTitle: 'About Cake Science',
+    aboutText: 'Nestled in the beautiful Andaman Islands, Cake Science is dedicated to bringing the joy of baking to everyone. Our hands-on classes combine traditional techniques with modern artistry, ensuring every student leaves with real skills and delicious creations. We believe baking is both a science and an art — and we\'re here to teach you both.',
+    phone: '09933223123',
+    address: 'Phongy Chang, DAG Colony,\nSri Vijaya Puram, Andaman & Nicobar Islands – 744101'
+  }
+};
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem('cakeScienceAdmin')) || JSON.parse(JSON.stringify(DEFAULT_STATE)); }
+  catch(e) { return JSON.parse(JSON.stringify(DEFAULT_STATE)); }
+}
+function saveState() { localStorage.setItem('cakeScienceAdmin', JSON.stringify(STATE)); }
+let STATE = loadState();
+if (!STATE.gallery) STATE.gallery = DEFAULT_STATE.gallery;
+if (!STATE.gallery.cakes) STATE.gallery.cakes = DEFAULT_STATE.gallery.cakes;
+if (!STATE.gallery.products) STATE.gallery.products = DEFAULT_STATE.gallery.products;
+if (!STATE.gallery.studio) STATE.gallery.studio = DEFAULT_STATE.gallery.studio;
+
+// ─── LOADER ───
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+    initPage();
+  }, 2200);
+});
+
+// ─── PARTICLES ───
+function createParticles() {
+  const emojis = ['🎂','🧁','🍰','🍪','🍩','✨','⭐','🌸'];
+  const container = document.getElementById('particles');
+  for(let i=0;i<20;i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.animationDuration = (10 + Math.random()*20) + 's';
+    p.style.animationDelay = (Math.random()*20) + 's';
+    p.style.fontSize = (0.8 + Math.random()*0.8) + 'rem';
+    container.appendChild(p);
+  }
+}
+
+// ─── INIT ───
+function initPage() {
+  createParticles();
+  renderOfferBanner();
+  renderCourses();
+  renderGalleries();
+  renderReviews();
+  applyContent();
+  initScrollReveal();
+  initCounters();
+  initCarouselDots();
+}
+
+// ─── THEME ───
+document.getElementById('themeToggle').addEventListener('click', function() {
+  const html = document.documentElement;
+  const dark = html.dataset.theme === 'dark';
+  html.dataset.theme = dark ? 'light' : 'dark';
+  this.textContent = dark ? '🌙' : '☀️';
+});
+
+// ─── NAVBAR ───
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// ─── RIPPLE ───
+function ripple(e) {
+  const btn = e.currentTarget;
+  const r = document.createElement('span');
+  r.className = 'btn-ripple';
+  const rect = btn.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  r.style.cssText = `width:${size}px;height:${size}px;top:${e.clientY-rect.top-size/2}px;left:${e.clientX-rect.left-size/2}px`;
+  btn.appendChild(r);
+  r.addEventListener('animationend', () => r.remove());
+}
+
+// ─── OFFER BANNER ───
+function renderOfferBanner() {
+  const active = STATE.offers.filter(o => o.active);
+  const banner = document.getElementById('offer-banner');
+  if (!active.length) { banner.classList.add('hidden'); return; }
+  banner.classList.remove('hidden');
+  let i = 0;
+  function show() { banner.textContent = active[i % active.length].text; i++; }
+  show();
+  setInterval(show, 4000);
+}
+
+// ─── COURSES ───
+function renderCourses() {
+  const grid = document.getElementById('courses-grid');
+  grid.innerHTML = STATE.courses.map(c => `
+    <div class="course-card reveal">
+      <div class="course-glow"></div>
+      <div class="course-img">${c.emoji}
+        <div class="course-tag">${c.tag || 'Course'}</div>
+      </div>
+      <div class="course-body">
+        <div class="course-name">${c.name}</div>
+        <div class="course-desc">${c.desc}</div>
+        <div class="course-meta">
+          <div class="course-meta-item"><i class="fa fa-clock"></i> ${c.dur}</div>
+          <div class="course-meta-item"><i class="fa fa-signal"></i> ${c.level}</div>
+        </div>
+      </div>
+    </div>`).join('');
+  initScrollReveal();
+}
+
+// ─── GALLERY ───
+let lightboxItems = [];
+let lightboxIdx = 0;
+function renderGalleries() {
+  ['cakes','products','studio'].forEach(key => {
+    const el = document.getElementById('gallery-' + key);
+    el.innerHTML = STATE.gallery[key].map((item,i) => `
+      <div class="gallery-item reveal" onclick="openLightbox('${key}',${i})">
+        ${item.startsWith('data:') || item.startsWith('http') ? `<img src="${item}" alt="Gallery">` : item}
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+      </div>`).join('');
+  });
+  initScrollReveal();
+}
+function switchTab(key, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + key).classList.add('active');
+}
+function openLightbox(key, idx) {
+  lightboxItems = STATE.gallery[key];
+  lightboxIdx = idx;
+  showLightboxItem();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function showLightboxItem() {
+  const item = lightboxItems[lightboxIdx];
+  const el = document.getElementById('lightbox-emoji');
+  if (item.startsWith('data:') || item.startsWith('http')) {
+    el.innerHTML = `<img src="${item}" style="max-width:90vw;max-height:80vh;border-radius:16px;">`;
+  } else {
+    el.textContent = item;
+    el.style.fontSize = '10rem';
+  }
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lightboxNav(dir) {
+  lightboxIdx = (lightboxIdx + dir + lightboxItems.length) % lightboxItems.length;
+  showLightboxItem();
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if(e.target === this) closeLightbox();
+});
+
+// ─── REVIEWS ───
+function renderReviews() {
+  const carousel = document.getElementById('reviews-carousel');
+  carousel.innerHTML = STATE.reviews.map(r => `
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-text">${r.text}</div>
+      <div class="review-author">
+        <div class="review-avatar">${r.name.charAt(0)}</div>
+        <div>
+          <div class="review-name">${r.name}</div>
+          <div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+          <div class="review-date">${r.date || ''}</div>
+        </div>
+      </div>
+    </div>`).join('');
+  const avg = (STATE.reviews.reduce((s,r)=>s+r.rating,0)/STATE.reviews.length).toFixed(1);
+  document.getElementById('avg-rating').textContent = avg;
+  document.getElementById('review-count').textContent = `Based on ${STATE.reviews.length} reviews`;
+  initCarouselDots();
+}
+function initCarouselDots() {
+  const dots = document.getElementById('carousel-dots');
+  const cards = document.querySelectorAll('.review-card');
+  dots.innerHTML = '';
+  const visible = Math.max(1, Math.round(window.innerWidth < 700 ? 1 : window.innerWidth < 1000 ? 2 : 3));
+  const count = Math.ceil(cards.length / visible);
+  for(let i=0;i<count;i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0?' active':'');
+    d.onclick = () => {
+      document.getElementById('reviews-carousel').scrollTo({ left: i * (document.querySelector('.review-card')?.offsetWidth+24||344) * visible, behavior:'smooth' });
+    };
+    dots.appendChild(d);
+  }
+  document.getElementById('reviews-carousel').addEventListener('scroll', function() {
+    const cardW = (document.querySelector('.review-card')?.offsetWidth+24) || 344;
+    const idx = Math.round(this.scrollLeft / (cardW * visible));
+    document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  }, { passive:true });
+}
+
+// ─── CONTENT ───
+function applyContent() {
+  const c = STATE.content;
+  document.getElementById('hero-sub-text').innerHTML = c.heroSub;
+  document.getElementById('contact-phone').textContent = c.phone;
+  document.getElementById('contact-address').innerHTML = c.address.replace('\n','<br>');
+}
+
+// ─── SCROLL REVEAL ───
+function initScrollReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if(e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.05) + 's';
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold:0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+// ─── COUNTERS ───
+function initCounters() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        const el = e.target;
+        const target = parseFloat(el.dataset.target);
+        const dec = el.classList.contains('counter-dec');
+        const dur = 1800;
+        const step = dur / 60;
+        let current = 0;
+        const timer = setInterval(() => {
+          current += target / (dur / step);
+          if(current >= target) { current = target; clearInterval(timer); }
+          el.textContent = dec ? current.toFixed(1) : Math.floor(current) + (el.dataset.target >= 100 ? '+' : '');
+        }, step);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold:0.5 });
+  document.querySelectorAll('.counter, .counter-dec').forEach(el => obs.observe(el));
+}
+
+// ─── ADMIN ───
+function openAdmin() {
+  document.getElementById('admin-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('admin-login').style.display = 'flex';
+  document.getElementById('admin-dashboard').style.display = 'none';
+  document.getElementById('login-err').style.display = 'none';
+  document.getElementById('login-user').value = '';
+  document.getElementById('login-pass').value = '';
+}
+function closeAdmin() {
+  document.getElementById('admin-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function doLogin() {
+  const u = document.getElementById('login-user').value.trim();
+  const p = document.getElementById('login-pass').value.trim();
+  if(u === STATE.creds.user && p === STATE.creds.pass) {
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-dashboard').style.display = 'flex';
+    refreshDashboard();
+    loadAdminContent();
+    renderAdminOffers();
+    renderAdminReviews();
+    renderAdminCourses();
+    renderAdminGallery();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+}
+function adminSection(key, el) {
+  document.querySelectorAll('.admin-nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.admin-panel-section').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-' + key).classList.add('active');
+}
+function refreshDashboard() {
+  document.getElementById('dash-reviews').textContent = STATE.reviews.length;
+  document.getElementById('dash-offers').textContent = STATE.offers.filter(o=>o.active).length;
+  document.getElementById('dash-images').textContent =
+    STATE.gallery.cakes.length + STATE.gallery.products.length + STATE.gallery.studio.length;
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// Offers
+function renderAdminOffers() {
+  document.getElementById('offer-list').innerHTML = STATE.offers.map(o => `
+    <div class="offer-item">
+      <div class="offer-text">${o.text}</div>
+      <span class="offer-badge ${o.active?'active':'inactive'}">${o.active?'Active':'Off'}</span>
+      <div class="offer-actions">
+        <button class="toggle-btn" onclick="toggleOffer(${o.id})">${o.active?'Disable':'Enable'}</button>
+        <button class="btn-danger" onclick="deleteOffer(${o.id})">✕</button>
+      </div>
+    </div>`).join('');
+}
+function addOffer() {
+  const t = document.getElementById('new-offer-text').value.trim();
+  if(!t) return;
+  STATE.offers.push({ id: Date.now(), text: t, active: true });
+  document.getElementById('new-offer-text').value = '';
+  saveState(); renderAdminOffers(); renderOfferBanner(); showToast('✅ Offer added!');
+}
+function toggleOffer(id) {
+  const o = STATE.offers.find(o=>o.id===id);
+  if(o) o.active = !o.active;
+  saveState(); renderAdminOffers(); renderOfferBanner();
+}
+function deleteOffer(id) {
+  STATE.offers = STATE.offers.filter(o=>o.id!==id);
+  saveState(); renderAdminOffers(); renderOfferBanner(); showToast('🗑️ Offer removed');
+}
+
+// Gallery
+function renderAdminGallery() {
+  const key = document.getElementById('gallery-select').value;
+  const items = STATE.gallery[key];
+  document.getElementById('admin-gallery-preview').innerHTML = items.map((item,i) => `
+    <div class="uploaded-img-item">
+      ${item.startsWith('data:')||item.startsWith('http') ? `<img src="${item}">` : item}
+      <button class="uploaded-img-del" onclick="deleteGalleryItem('${key}',${i})">✕</button>
+    </div>`).join('');
+}
+function deleteGalleryItem(key, idx) {
+  STATE.gallery[key].splice(idx, 1);
+  saveState(); renderAdminGallery(); renderGalleries(); showToast('🗑️ Image removed');
+}
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('drop-zone').classList.remove('dragover');
+  handleFiles(e.dataTransfer.files);
+}
+function handleFileInput(e) { handleFiles(e.target.files); }
+function handleFiles(files) {
+  const key = document.getElementById('gallery-select').value;
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      STATE.gallery[key].push(ev.target.result);
+      saveState(); renderAdminGallery(); renderGalleries();
+    };
+    reader.readAsDataURL(file);
+  });
+  showToast('✅ Image(s) uploaded!');
+}
+
+// Content
+function loadAdminContent() {
+  const c = STATE.content;
+  document.getElementById('edit-hero-sub').value = c.heroSub;
+  document.getElementById('edit-about-title').value = c.aboutTitle;
+  document.getElementById('edit-about-text').value = c.aboutText;
+  document.getElementById('edit-phone').value = c.phone;
+  document.getElementById('edit-address').value = c.address;
+}
+function saveContent() {
+  STATE.content.heroSub = document.getElementById('edit-hero-sub').value;
+  STATE.content.aboutTitle = document.getElementById('edit-about-title').value;
+  STATE.content.aboutText = document.getElementById('edit-about-text').value;
+  STATE.content.phone = document.getElementById('edit-phone').value;
+  STATE.content.address = document.getElementById('edit-address').value;
+  saveState(); applyContent(); showToast('✅ Content saved!');
+}
+
+// Courses
+function renderAdminCourses() {
+  document.getElementById('courses-admin-list').innerHTML = STATE.courses.map(c => `
+    <div class="review-admin-item">
+      <div class="review-admin-header">
+        <span class="review-admin-name">${c.emoji} ${c.name} — ${c.dur} (${c.level})</span>
+        <button class="btn-danger" onclick="deleteCourse(${c.id})">✕</button>
+      </div>
+      <div class="review-admin-text">${c.desc}</div>
+    </div>`).join('');
+}
+function addCourse() {
+  const n = document.getElementById('new-course-name').value.trim();
+  const d = document.getElementById('new-course-desc').value.trim();
+  if(!n||!d) return;
+  STATE.courses.push({
+    id: Date.now(),
+    name: n, desc: d,
+    dur: document.getElementById('new-course-dur').value || '?',
+    level: document.getElementById('new-course-level').value || 'All Levels',
+    emoji: document.getElementById('new-course-emoji').value || '🎂',
+    tag: 'New'
+  });
+  ['new-course-name','new-course-desc','new-course-dur','new-course-level','new-course-emoji'].forEach(id => document.getElementById(id).value='');
+  saveState(); renderAdminCourses(); renderCourses(); showToast('✅ Course added!');
+}
+function deleteCourse(id) {
+  STATE.courses = STATE.courses.filter(c=>c.id!==id);
+  saveState(); renderAdminCourses(); renderCourses(); showToast('🗑️ Course removed');
+}
+
+// Reviews
+function renderAdminReviews() {
+  document.getElementById('reviews-admin-list').innerHTML = STATE.reviews.map(r => `
+    <div class="review-admin-item">
+      <div class="review-admin-header">
+        <span class="review-admin-name">${r.name} — ${'★'.repeat(r.rating)}</span>
+        <button class="btn-danger" onclick="deleteReview(${r.id})">✕</button>
+      </div>
+      <div class="review-admin-text">${r.text}</div>
+    </div>`).join('');
+}
+function addReview() {
+  const n = document.getElementById('new-review-name').value.trim();
+  const t = document.getElementById('new-review-text').value.trim();
+  const rat = parseInt(document.getElementById('new-review-rating').value)||5;
+  if(!n||!t) return;
+  STATE.reviews.push({ id:Date.now(), name:n, rating:rat, text:t, date:'Just now' });
+  ['new-review-name','new-review-text'].forEach(id=>document.getElementById(id).value='');
+  saveState(); renderAdminReviews(); renderReviews(); showToast('✅ Review added!');
+}
+function deleteReview(id) {
+  STATE.reviews = STATE.reviews.filter(r=>r.id!==id);
+  saveState(); renderAdminReviews(); renderReviews(); showToast('🗑️ Review removed');
+}
+
+// Settings
+function changeCredentials() {
+  const nu = document.getElementById('new-username').value.trim();
+  const np = document.getElementById('new-password').value.trim();
+  const cp = document.getElementById('confirm-password').value.trim();
+  if(!nu||!np) return showToast('❌ Fill all fields');
+  if(np !== cp) return showToast('❌ Passwords do not match');
+  STATE.creds = { user:nu, pass:np };
+  saveState();
+  ['new-username','new-password','confirm-password'].forEach(id=>document.getElementById(id).value='');
+  showToast('✅ Credentials updated!');
+}
+function resetData() {
+  STATE = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  saveState(); location.reload();
+}
+
+// ─── keyboard ───
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape') { closeLightbox(); closeAdmin(); }
+  if(e.key==='ArrowLeft') lightboxNav(-1);
+  if(e.key==='ArrowRight') lightboxNav(1);
+});
+</script>
+</body>
+</html>
