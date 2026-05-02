@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cake Science – Baking Class Andaman</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink-deep: #c2185b;
+    --pink-mid: #e91e8c;
+    --pink-soft: #f48fb1;
+    --pink-pale: #fce4ec;
+    --pink-blush: #fff0f5;
+    --rose-gold: #c9747c;
+    --cream: #fff8f0;
+    --text-dark: #2c1a1e;
+    --text-mid: #5a3a42;
+    --text-light: #9c6b76;
+    --glass-bg: rgba(255,255,255,0.18);
+    --glass-border: rgba(255,255,255,0.4);
+    --shadow-pink: 0 20px 60px rgba(194,24,91,0.18);
+    --shadow-soft: 0 8px 32px rgba(194,24,91,0.1);
+    --grad-primary: linear-gradient(135deg, #ff6b9d 0%, #c2185b 50%, #880e4f 100%);
+    --grad-soft: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
+    --grad-blush: linear-gradient(135deg, #fff0f5 0%, #fce4ec 100%);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 1rem 2rem;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.3s ease;
+  }
+  nav.scrolled {
+    padding: 0.7rem 2rem;
+    box-shadow: 0 4px 30px rgba(194,24,91,0.12);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.6rem;
+    text-decoration: none;
+  }
+  .nav-logo .logo-icon {
+    width: 42px; height: 42px;
+    background: var(--grad-primary);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 15px rgba(194,24,91,0.35);
+  }
+  .nav-logo .logo-text {
+    display: flex; flex-direction: column; line-height: 1.1;
+  }
+  .nav-logo .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--pink-deep);
+  }
+  .nav-logo .logo-sub {
+    font-size: 0.65rem; font-weight: 500;
+    color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.88rem; font-weight: 500;
+    color: var(--text-mid);
+    letter-spacing: 0.03em;
+    position: relative; padding-bottom: 3px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--grad-primary);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--pink-deep); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--grad-primary);
+    color: white !important;
+    padding: 0.5rem 1.4rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(194,24,91,0.3);
+    transition: transform 0.2s, box-shadow 0.2s !important;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(194,24,91,0.4) !important; }
+  .nav-cta::after { display: none !important; }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--pink-deep); border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(135deg, rgba(136,14,79,0.82) 0%, rgba(194,24,91,0.72) 40%, rgba(255,107,157,0.6) 100%),
+      url('https://images.unsplash.com/photo-1607478900766-efe13248b125?w=1600&q=80') center/cover no-repeat;
+    animation: heroZoom 8s ease-in-out infinite alternate;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1); }
+    to   { transform: scale(1.05); }
+  }
+  .hero-particles {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(-20px) scale(1.5); opacity: 0; }
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    max-width: 780px;
+    animation: heroIn 1s cubic-bezier(0.23,1,0.32,1) both;
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    backdrop-filter: blur(10px);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    color: white; font-size: 0.82rem; font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    animation: heroIn 1s 0.2s cubic-bezier(0.23,1,0.32,1) both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 900; line-height: 1.12;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.25);
+    animation: heroIn 1s 0.3s cubic-bezier(0.23,1,0.32,1) both;
+  }
+  .hero-title .script {
+    font-family: 'Dancing Script', cursive;
+    color: #ffd6e0;
+    display: block;
+    font-size: 1.2em;
+  }
+  .hero-sub {
+    font-size: 1.12rem; font-weight: 300;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 2.2rem;
+    line-height: 1.6;
+    animation: heroIn 1s 0.4s cubic-bezier(0.23,1,0.32,1) both;
+  }
+  .hero-buttons {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: heroIn 1s 0.5s cubic-bezier(0.23,1,0.32,1) both;
+  }
+  .btn-primary {
+    background: white;
+    color: var(--pink-deep);
+    padding: 0.9rem 2.4rem;
+    border-radius: 50px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    border: none; cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.3); }
+  .btn-outline {
+    background: transparent;
+    color: white;
+    padding: 0.9rem 2.4rem;
+    border-radius: 50px;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.6);
+    transition: all 0.3s;
+    backdrop-filter: blur(8px);
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: white; transform: translateY(-3px); }
+  .hero-stats {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 2.5rem;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px; padding: 1rem 2.5rem;
+    animation: heroIn 1s 0.7s cubic-bezier(0.23,1,0.32,1) both;
+  }
+  .stat { text-align: center; color: white; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; display: block; }
+  .stat-lbl { font-size: 0.72rem; font-weight: 400; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.06em; }
+  .scroll-hint {
+    position: absolute; bottom: 2rem; right: 2.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    color: rgba(255,255,255,0.7); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+    animation: heroIn 1s 0.9s both;
+  }
+  .scroll-hint .arrow {
+    width: 28px; height: 28px;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--pink-deep);
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 2rem;
+  }
+  .section-label::before {
+    content: '';
+    position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 1.4rem; height: 2px;
+    background: var(--grad-primary);
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800; line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+  .section-title span { color: var(--pink-deep); }
+  .section-desc {
+    font-size: 1rem; color: var(--text-light);
+    max-width: 520px; line-height: 1.7;
+  }
+  .container { max-width: 1160px; margin: 0 auto; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem; align-items: center;
+  }
+  .about-image-wrap {
+    position: relative;
+  }
+  .about-image-frame {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    box-shadow: var(--shadow-pink);
+  }
+  .about-image-frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .about-image-frame:hover img { transform: scale(1.04); }
+  .about-badge {
+    position: absolute;
+    bottom: -1.5rem; right: -1.5rem;
+    background: white;
+    border-radius: 20px;
+    padding: 1.2rem 1.4rem;
+    box-shadow: var(--shadow-pink);
+    text-align: center;
+    min-width: 130px;
+  }
+  .about-badge .badge-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900;
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .about-badge .badge-txt { font-size: 0.72rem; color: var(--text-light); font-weight: 500; }
+  .about-deco {
+    position: absolute;
+    top: -2rem; left: -2rem;
+    width: 120px; height: 120px;
+    background: var(--grad-soft);
+    border-radius: 50%;
+    opacity: 0.45;
+    z-index: -1;
+  }
+  .about-highlight {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-top: 1.8rem;
+  }
+  .about-highlight + .about-highlight { margin-top: 1.2rem; }
+  .highlight-icon {
+    width: 46px; height: 46px; flex-shrink: 0;
+    background: var(--pink-pale);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .highlight-text h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.25rem; }
+  .highlight-text p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
+
+  /* ── COURSES ── */
+  #courses {
+    background: var(--pink-blush);
+    position: relative; overflow: hidden;
+  }
+  #courses::before {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: var(--grad-soft);
+    border-radius: 50%; opacity: 0.4;
+  }
+  .courses-header { text-align: center; margin-bottom: 3.5rem; }
+  .courses-header .section-desc { margin: 0 auto; }
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.8rem;
+  }
+  .course-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(194,24,91,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(194,24,91,0.08);
+    cursor: pointer;
+  }
+  .course-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--grad-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+  .course-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-pink); }
+  .course-card:hover::before { transform: scaleX(1); }
+  .course-emoji {
+    font-size: 2.2rem; margin-bottom: 1.2rem; display: block;
+    filter: drop-shadow(0 2px 8px rgba(194,24,91,0.2));
+  }
+  .course-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--text-dark); margin-bottom: 0.5rem;
+  }
+  .course-desc { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; margin-bottom: 1.2rem; }
+  .course-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .course-duration {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.8rem; font-weight: 500; color: var(--text-mid);
+  }
+  .course-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--pink-deep);
+  }
+  .course-tag {
+    display: inline-block;
+    background: var(--pink-pale);
+    color: var(--pink-deep);
+    font-size: 0.7rem; font-weight: 600;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+
+  /* ── GALLERY ── */
+  #gallery { background: white; }
+  .gallery-header { text-align: center; margin-bottom: 3rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 240px);
+    gap: 1rem;
+  }
+  .gallery-item {
+    display: block;
+    border-radius: 18px; overflow: hidden;
+    position: relative; cursor: pointer;
+    text-decoration: none;
+  }
+  .gallery-item:focus-visible { box-shadow: 0 0 0 3px var(--pink-mid); }
+  .gallery-item:focus-visible img { transform: scale(1.07); }
+  .gallery-item:focus-visible .gallery-overlay { opacity: 1; }
+  .gallery-item:nth-child(1) { grid-column: 1/6; grid-row: 1/2; }
+  .gallery-item:nth-child(2) { grid-column: 6/9; grid-row: 1/2; }
+  .gallery-item:nth-child(3) { grid-column: 9/13; grid-row: 1/4; }
+  .gallery-item:nth-child(4) { grid-column: 1/4; grid-row: 2/3; }
+  .gallery-item:nth-child(5) { grid-column: 4/9; grid-row: 2/3; }
+  .gallery-item:nth-child(6) { grid-column: 1/9; grid-row: 3/4; }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.07); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(136,14,79,0.7) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: flex-end; padding: 1.2rem;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay span { color: white; font-size: 0.85rem; font-weight: 500; }
+
+  /* ── REVIEWS ── */
+  #reviews { background: var(--pink-blush); }
+  .reviews-header { text-align: center; margin-bottom: 3.5rem; }
+  .overall-rating {
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .rating-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; font-weight: 900;
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .stars-row { display: flex; gap: 0.25rem; font-size: 1.3rem; }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .review-card {
+    background: white;
+    border-radius: 22px;
+    padding: 1.8rem;
+    box-shadow: 0 4px 20px rgba(194,24,91,0.07);
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(194,24,91,0.07);
+  }
+  .review-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-pink); }
+  .review-quote {
+    font-size: 2.5rem; line-height: 1;
+    font-family: 'Playfair Display', serif;
+    color: var(--pink-soft); margin-bottom: 0.8rem;
+  }
+  .review-text {
+    font-size: 0.92rem; color: var(--text-mid);
+    line-height: 1.7; margin-bottom: 1.4rem;
+    font-style: italic;
+  }
+  .review-footer { display: flex; align-items: center; gap: 0.8rem; }
+  .reviewer-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--grad-primary);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .reviewer-info h4 { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); }
+  .reviewer-info .review-date { font-size: 0.75rem; color: var(--text-light); }
+  .review-stars { display: flex; gap: 2px; font-size: 0.8rem; margin-top: 0.2rem; }
+
+  /* ── CONTACT ── */
+  #contact { background: white; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem; align-items: start;
+  }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.8rem;
+    padding: 1.4rem;
+    background: var(--pink-blush);
+    border-radius: 18px;
+    border: 1px solid rgba(194,24,91,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .contact-item:hover { transform: translateX(5px); box-shadow: var(--shadow-soft); }
+  .contact-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: var(--grad-primary);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(194,24,91,0.3);
+  }
+  .contact-item h4 { font-size: 0.8rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; margin-bottom: 0.3rem; }
+  .contact-item p { font-size: 0.95rem; color: var(--text-dark); font-weight: 500; line-height: 1.5; }
+  .map-wrap {
+    border-radius: 24px; overflow: hidden;
+    box-shadow: var(--shadow-pink);
+    height: 380px;
+    position: relative;
+  }
+  .map-wrap iframe { width: 100%; height: 100%; border: none; }
+  .map-placeholder {
+    width: 100%; height: 100%;
+    background: var(--grad-blush);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1rem; color: var(--pink-deep);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+  }
+  .map-placeholder .map-pin { font-size: 3rem; animation: bounce 2s infinite; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: linear-gradient(135deg, #1a0a0e 0%, #2c1a1e 60%, #3d1a2e 100%);
+    color: rgba(255,255,255,0.75);
+    padding: 4rem 2rem 2rem;
+  }
+  .footer-grid {
+    max-width: 1160px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-logo {
+    display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.2rem;
+  }
+  .footer-logo .logo-icon {
+    width: 44px; height: 44px;
+    background: var(--grad-primary);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .footer-logo .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: white;
+    line-height: 1.2;
+  }
+  .footer-logo .logo-text small { display: block; font-size: 0.65rem; color: rgba(255,255,255,0.5); font-family: 'DM Sans', sans-serif; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; }
+  .footer-desc { font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .social-links { display: flex; gap: 0.7rem; }
+  .social-btn {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .social-btn:hover { background: var(--pink-deep); border-color: var(--pink-deep); transform: translateY(-3px); }
+  .footer-col h4 {
+    font-size: 0.8rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: white; margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.7rem; }
+  .footer-col ul li a {
+    text-decoration: none;
+    font-size: 0.88rem; color: rgba(255,255,255,0.6);
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--pink-soft); }
+  .footer-contact-item {
+    display: flex; gap: 0.8rem; margin-bottom: 0.8rem;
+    font-size: 0.85rem; color: rgba(255,255,255,0.6); align-items: flex-start;
+  }
+  .footer-contact-item .fi { font-size: 1rem; flex-shrink: 0; color: var(--pink-soft); margin-top: 0.1rem; }
+  .footer-bottom {
+    max-width: 1160px; margin: 2rem auto 0;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+  .footer-bottom a { color: var(--pink-soft); text-decoration: none; }
+  .footer-bottom a:hover { color: white; }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-in-left {
+    opacity: 0; transform: translateX(-40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in-left.visible { opacity: 1; transform: translateX(0); }
+  .fade-in-right {
+    opacity: 0; transform: translateX(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+
+  .divider {
+    width: 60px; height: 3px;
+    background: var(--grad-primary);
+    border-radius: 2px;
+    margin: 1.2rem 0;
+  }
+
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 2rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--text-dark); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--pink-deep); }
+  .mobile-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.5rem; color: var(--text-mid);
+    padding: 0.5rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-image-wrap { max-width: 400px; margin: 0 auto; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .map-wrap { height: 280px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(4, 200px);
+    }
+    .gallery-item:nth-child(1) { grid-column: 1/2; grid-row: 1/2; }
+    .gallery-item:nth-child(2) { grid-column: 2/3; grid-row: 1/2; }
+    .gallery-item:nth-child(3) { grid-column: 1/3; grid-row: 2/3; }
+    .gallery-item:nth-child(4) { grid-column: 1/2; grid-row: 3/4; }
+    .gallery-item:nth-child(5) { grid-column: 2/3; grid-row: 3/4; }
+    .gallery-item:nth-child(6) { grid-column: 1/3; grid-row: 4/5; }
+  }
+  @media (max-width: 680px) {
+    nav { padding: 1rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    section { padding: 4rem 1.2rem; }
+    .hero-stats { flex-wrap: wrap; gap: 1.2rem; padding: 0.8rem 1.5rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(6, 180px); }
+    .gallery-item { grid-column: 1/2 !important; grid-row: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="logo-icon">🎂</div>
+    <div class="logo-text">
+      <span class="logo-name">Cake Science</span>
+      <span class="logo-sub">Andaman</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Join Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#about" class="mm-link">About</a>
+  <a href="#courses" class="mm-link">Courses</a>
+  <a href="#gallery" class="mm-link">Gallery</a>
+  <a href="#reviews" class="mm-link">Reviews</a>
+  <a href="#contact" class="mm-link">Contact</a>
+  <a href="#contact" class="btn-primary mm-link">Join Now 🎂</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⭐ 4.8 Rating &nbsp;·&nbsp; 25 Happy Students</div>
+    <h1 class="hero-title">
+      <span class="script">Learn the Art of</span>
+      Baking with Cake Science 
+    </h1>
+    <p class="hero-sub">Professional Baking Classes in the Beautiful Andaman Islands<br>Discover the science and joy behind every delicious creation.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">🎂 Join Now</a>
+      <a href="#courses" class="btn-outline">View Courses</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">4.8⭐</span><span class="stat-lbl">Rating</span></div>
+    <div class="stat"><span class="stat-num">25+</span><span class="stat-lbl">Reviews</span></div>
+    <div class="stat"><span class="stat-num">9 AM</span><span class="stat-lbl">Opens Mon</span></div>
+  </div>
+  <div class="scroll-hint">
+    <div class="arrow">↓</div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-wrap fade-in-left">
+        <div class="about-deco"></div>
+        <div class="about-image-frame">
+          <img src="image/about/1.jpg" alt="Owner of Cake Science" loading="lazy">
+        </div>
+        <div class="about-badge">
+          <div class="badge-num">7+</div>
+          <div class="badge-txt">Years Teaching</div>
+        </div>
+      </div>
+      <div class="about-content fade-in-right">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Learn the Art of <br> <span>Baking with Joy</span> </h2>
+        <div class="divider"></div>
+        <p style="color:var(--text-light);line-height:1.8;font-size:0.97rem;">
+          Welcome to Cake Science — where the love of baking meets the joy of teaching.<br>~ Cake Science ~ is a Bakery & Confectionery Center located in Sri Vijaya Puram, Andaman Islands. It brings the joy of baking in everyone and is open to all age groups for both male & female for the ONE who loves to learn baking with fun & passion.
+        
+        </p>
+        <div class="about-highlight">
+          <div class="highlight-icon">🧁</div>
+          <div class="highlight-text">
+            <h4>Passion for Baking</h4>
+            <p>Every class is crafted with love and deep expertise in baking science — from chemistry of cakes to the art of decoration.</p>
+          </div>
+        </div>
+        <div class="about-highlight">
+          <div class="highlight-icon">📚</div>
+          <div class="highlight-text">
+            <h4>Hands-On Teaching Experience</h4>
+            <p>With 5+ years of professional teaching, our instructor guides you step by step until you feel completely confident.</p>
+          </div>
+        </div>
+        <div class="about-highlight">
+          <div class="highlight-icon">🌸</div>
+          <div class="highlight-text">
+            <h4>Friendly & Hygienic Environment</h4>
+            <p>Our studio is warm, welcoming, and spotlessly clean — the perfect space to learn, create, and enjoy.</p>
+          </div>
+        </div>
+        <div class="about-highlight">
+          <div class="highlight-icon">🚀</div>
+          <div class="highlight-text">
+            <h4>Supporting Your Journey</h4>
+            <p>We don't just teach recipes — we mentor students to launch their own baking businesses and follow their dreams.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="container">
+    <div class="courses-header fade-in">
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title">Our <span>Baking</span> Courses</h2>
+      <p class="section-desc">Choose from a variety of expertly designed courses for beginners to advanced bakers. Each course is a journey of discovery.</p>
+    </div>
+    <div class="courses-grid" id="coursesGrid"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-header fade-in">
+      <span class="section-label">Inside Our Studio</span>
+      <h2 class="section-title"><span>Gallery</span></h2>
+      <p class="section-desc" style="margin:0 auto;">Peek inside our beautiful baking studio — where creativity blooms and delicious things happen.</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid" style="margin-top:2.5rem;"></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-header fade-in">
+      <span class="section-label">Student Love</span>
+      <h2 class="section-title">What Our <span>Students</span> Say</h2>
+      <div class="overall-rating">
+        <div class="rating-big">4.8</div>
+        <div class="stars-row">⭐⭐⭐⭐⭐</div>
+        <p style="color:var(--text-light);font-size:0.85rem;">Based on 25 Google Reviews</p>
+      </div>
+    </div>
+    <div class="reviews-grid" id="reviewsGrid"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div style="margin-bottom:3rem" class="fade-in">
+      <span class="section-label">Find Us</span>
+      <h2 class="section-title">Get In <span>Touch</span></h2>
+      <p class="section-desc">We'd love to hear from you. Visit our studio or reach out to enroll in your first class!</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-in-left">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Address</h4>
+            <p>Phongy Chang, DAG Colony,<br>Sri Vijaya Puram, Andaman and<br>Nicobar Islands – 744101</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <p><a href="tel:+919933223123" style="color:var(--text-dark);text-decoration:none;">+91 99332 23123</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h4>Timings</h4>
+            <p>Opens at 9:00 AM<br>Monday – Saturday</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⭐</div>
+          <div>
+            <h4>Rating</h4>
+            <p>4.8 ⭐ · 25 Reviews on Google</p>
+          </div>
+        </div>
+      </div>
+      <div class="map-wrap fade-in-right">
+        <div class="map-placeholder">
+          <div class="map-pin">📍</div>
+          <div style="text-align:center;">
+            <strong>Cake Science – Baking Class Andaman</strong>
+            <p style="font-size:0.82rem;color:var(--text-light);margin-top:0.5rem;font-family:'DM Sans',sans-serif;">Sri Vijaya Puram, Andaman & Nicobar Islands</p>
+            <a href="https://maps.app.goo.gl/S7UffyPi7n4Cu3Pm6" target="_blank" rel="noopener"
+               style="display:inline-block;margin-top:1rem;padding:0.6rem 1.4rem;background:var(--grad-primary);color:white;border-radius:30px;text-decoration:none;font-size:0.82rem;font-family:'DM Sans',sans-serif;font-weight:600;">
+              Open in Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="logo-icon">🎂</div>
+        <div class="logo-text">
+          Cake Science
+          <small>Baking Class Andaman</small>
+        </div>
+      </div>
+      <p class="footer-desc">Where passion meets precision. Join our baking community in the beautiful Andaman Islands and discover the joy of creating delicious masterpieces.</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/cakescience.svp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn" title="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/share/1JCs4hocH3/" target="_blank" class="social-btn" title="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.google.com/maps/place/Cake+Science+~+Baking+Class+Andaman~/@11.6695943,92.732797,17z/data=!4m6!3m5!1s0x308895fbfb7c18ef:0xf71038d487249c68!8m2!3d11.668428!4d92.7365199!16s%2Fg%2F11j01p_qm0?entry=ttu&g_ep=EgoyMDI2MDQyOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="social-btn" title="Google">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 110-12.064c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#courses">Our Courses</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <div class="footer-contact-item">
+        <span class="fi">📍</span>
+        <span>Phongy Chang, DAG Colony, Sri Vijaya Puram, Andaman & Nicobar Islands – 744101</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="fi">📞</span>
+        <span><a href="tel:+919933223123" style="color:inherit;text-decoration:none;">+91 99332 23123</a></span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="fi">🕐</span>
+        <span>Opens 9 AM · Mon–Sat</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="fi">⭐</span>
+        <span>4.8 · 25 Google Reviews</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Cake Science – Baking Class Andaman. All Rights Reserved.</p>
+    <p>Designed by <a href="https://github.com/RHM-hy" target="_blank" rel="noopener">RHM-hy</a> &nbsp;·&nbsp; Made with 🍰 in Andaman</p>
+  </div>
+</footer>
+
+<script>
+// ── COURSES DATA (easy to edit) ──
+const courses = [
+  {
+    name: "Fresh Hobby Baking Workshop",
+    emoji: "🍰",
+    tag: "Beginner",
+    description: "Perfect for beginners who want to explore baking as a fun hobby.",
+    duration: "5 Days",
+    
+  },
+  {
+    name: "Certified Beginners Workshop",
+    emoji: "🎓",
+    tag: "Beginner",
+    description: "Start your baking journey with strong fundamentals.",
+    duration: "5 Days",
+   
+  },
+  {
+    name: "Certified Cake & Icing Course",
+    emoji: "🎂",
+    tag: "Beginner",
+    description: "Master the art of baking soft cakes and decorating them beautifully.",
+    duration: "5 Days",
+   
+  },
+  {
+    name: "Certified Breads Course",
+    emoji: "🥖",
+    tag: "Beginner",
+    description: "Discover the secrets of baking fresh, soft breads from scratch.",
+    duration: "5 Days",
+    
+  },
+  {
+    name: "Certified Tea Cakes Course",
+    emoji: "🧁",
+    tag: "Beginner",
+    description: "Bake delicious tea-time cakes with perfect texture and flavor.",
+    duration: "5 Days",
+    
+  },
+  {
+    name: "Certified Dessert Course",
+    emoji: "🍮",
+    tag: "Beginner",
+    description: "Indulge in creating mouth-watering desserts.",
+    duration: "5 Days",
+    
+  },
+  {
+    name: "Certificate Professional Baking",
+    emoji: "👩‍🍳",
+    tag: "Beginner",
+    description: "An advanced course for those who want to become professional bakers.",
+    duration: "12 Days",
+    
+  }
+];
+
+// ── GALLERY DATA (easy to edit) ──
+const gallery = [
+  {
+    src: "image/Gallery/1.jpeg",
+    alt: "Baking class in progress",
+    label: "🎂 Class in Progress"
+  },
+  {
+    src: "image/Gallery/2.jpeg",
+    alt: "Student creations",
+    label: "🍰 Student Creations"
+  },
+  {
+    src: "image/Gallery/3.jpeg",
+    alt: "Milk breads",
+    label: "🍞 Milk Breads"
+  },
+  {
+    src: "image/Gallery/5.jpeg",
+    alt: "Pizza baking session",
+    label: "🥖 Pizza"
+  },
+  {
+    src: "image/Gallery/13.jpeg",
+    alt: "Decorating session",
+    label: "🌸 Cake Decorating"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=800&q=80",
+    alt: "Pastries and treats",
+    label: "✨ Sweet Treats"
+  },
+  {
+    src: "image/Gallery/12.jpeg",
+    alt: "Pastries and treats",
+    label: "✨ Sweet Treats"
+  },
+  {
+    src: "image/Gallery/6.jpeg",
+    alt: "Pastries and treats",
+    label: "✨ Sweet Treats"
+  },
+  {
+    src: "image/Gallery/11.jpeg",
+    alt: "Pastries and treats",
+    label: "✨ Sweet Treats"
+  },
+  {
+  src: "image/Gallery/7.jpeg",
+  alt: "Describe the photo",
+  label: "✨ Sweet Treats"
+  },
+  {
+    src: "image/Gallery/8.jpeg",
+    alt: "Pastries and treats",
+    label: "✨ Sweet Treats"
+  },
+  {
+    src: "image/Gallery/9.jpeg",
+    alt: "Pastries and treats",
+    label: "✨ Sweet Treats"
+  },
+  {
+    src: "image/Gallery/14.jpeg",
+    alt: "Pastries and treats",
+    label: "✨ Sweet Treats"
+  },
+  {
+    src: "image/Gallery/15.jpeg",
+    alt: "Pastries and treats",
+    label: "✨ Sweet Treats"
+  }
+  
+  
+];
+
+// ── REVIEWS DATA ──
+const reviews = [
+  {
+    text: "Amazing instructor! The baking environment is so hygienic and welcoming. I learned so much in just a few days. Highly recommend to anyone who wants to pursue baking seriously!",
+    name: "Priya Sharma",
+    date: "March 2026",
+    stars: 5
+  },
+  {
+    text: "The cakes we made were absolutely delicious and yummy! The instructor is very patient and explains everything so clearly. Best decision I made this year.",
+    name: "Arun Kumar",
+    date: "February 2026",
+    stars: 5
+  },
+  {
+    text: "Wonderful experience from start to finish. The studio is beautifully maintained and the learning environment is so friendly. My cake designing skills improved dramatically!",
+    name: "Meena Devi",
+    date: "January 2026",
+    stars: 5
+  },
+  {
+    text: "I joined the 10-day workshop and it was truly life-changing. I now run my own small baking business from home. Thank you Cake Science for believing in me!",
+    name: "Lakshmi R.",
+    date: "December 2025",
+    stars: 5
+  }
+];
+
+// ── RENDER COURSES ──
+function renderCourses() {
+  const grid = document.getElementById('coursesGrid');
+  grid.innerHTML = courses.map((c, i) => `
+    <div class="course-card fade-in" style="transition-delay:${i * 0.08}s">
+      <span class="course-emoji">${c.emoji}</span>
+      <div class="course-tag">${c.tag}</div>
+      <div class="course-name">${c.name}</div>
+      <div class="course-desc">${c.description}</div>
+      <div class="course-meta">
+        <div class="course-duration">⏱ ${c.duration}</div>
+        ${c.price ? `<div class="course-price">${c.price}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── RENDER GALLERY ──
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  if (!grid) return;
+  grid.innerHTML = gallery.map((g, i) => `
+    <a class="gallery-item fade-in" style="transition-delay:${i * 0.1}s" href="${g.src}" target="_blank" rel="noopener" aria-label="Open image: ${g.alt}">
+      <img src="${g.src}" alt="${g.alt}" loading="lazy">
+      <div class="gallery-overlay"><span>${g.label}</span></div>
+    </a>
+  `).join('');
+}
+
+// ── RENDER REVIEWS ──
+function renderReviews() {
+  const grid = document.getElementById('reviewsGrid');
+  grid.innerHTML = reviews.map((r, i) => `
+    <div class="review-card fade-in" style="transition-delay:${i * 0.1}s">
+      <div class="review-quote">"</div>
+      <p class="review-text">${r.text}</p>
+      <div class="review-footer">
+        <div class="reviewer-avatar">${r.name.charAt(0)}</div>
+        <div class="reviewer-info">
+          <h4>${r.name}</h4>
+          <div class="review-stars">${'⭐'.repeat(r.stars)}</div>
+          <div class="review-date">${r.date}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── PARTICLES ──
+function createParticles() {
+  const container = document.getElementById('particles');
+  const count = 18;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      width: ${Math.random() * 6 + 3}px;
+      height: ${Math.random() * 6 + 3}px;
+      animation-duration: ${Math.random() * 8 + 6}s;
+      animation-delay: ${Math.random() * 6}s;
+      opacity: ${Math.random() * 0.6 + 0.2};
+    `;
+    container.appendChild(p);
+  }
+}
+
+// ── SCROLL ANIMATIONS ──
+function initScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(el => observer.observe(el));
+}
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ── MOBILE MENU ──
+document.getElementById('hamburgerBtn').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('mobileClose').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+});
+document.querySelectorAll('.mm-link').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── INIT ──
+renderCourses();
+renderGallery();
+renderReviews();
+createParticles();
+setTimeout(initScrollAnimations, 100);
+</script>
+</body>
+</html>
