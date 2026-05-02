@@ -432,23 +432,20 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(3, 240px);
-    gap: 1rem;
+    gap: 20px;
+    grid-auto-rows: 240px;
+    grid-auto-flow: row dense;
   }
   .gallery-item {
     display: block;
     border-radius: 18px; overflow: hidden;
     position: relative; cursor: pointer;
     text-decoration: none;
+    grid-column: span 4;
   }
   .gallery-item:focus-visible { box-shadow: 0 0 0 3px var(--pink-mid); }
   .gallery-item:focus-visible img { transform: scale(1.07); }
   .gallery-item:focus-visible .gallery-overlay { opacity: 1; }
-  .gallery-item:nth-child(1) { grid-column: 1/6; grid-row: 1/2; }
-  .gallery-item:nth-child(2) { grid-column: 6/9; grid-row: 1/2; }
-  .gallery-item:nth-child(3) { grid-column: 9/13; grid-row: 1/4; }
-  .gallery-item:nth-child(4) { grid-column: 1/4; grid-row: 2/3; }
-  .gallery-item:nth-child(5) { grid-column: 4/9; grid-row: 2/3; }
-  .gallery-item:nth-child(6) { grid-column: 1/9; grid-row: 3/4; }
   .gallery-item img {
     width: 100%; height: 100%; object-fit: cover;
     transition: transform 0.5s ease;
@@ -458,10 +455,74 @@
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(136,14,79,0.7) 0%, transparent 60%);
     opacity: 0; transition: opacity 0.3s;
-    display: flex; align-items: flex-end; padding: 1.2rem;
+    display: flex; align-items: flex-end; padding: 20px;
   }
   .gallery-item:hover .gallery-overlay { opacity: 1; }
   .gallery-overlay span { color: white; font-size: 0.85rem; font-weight: 500; }
+
+  /* ── GALLERY LIGHTBOX (zoom on same page) ── */
+  .gallery-lightbox {
+    position: fixed; inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+  }
+  .gallery-lightbox.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.25s ease;
+  }
+  .gallery-lightbox-content {
+    width: min(1100px, 100%);
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gallery-lightbox-img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 22px;
+    box-shadow: var(--shadow-pink);
+    background: white;
+  }
+  .gallery-lightbox-close {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-soft);
+    color: var(--text-mid);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+  .gallery-lightbox-close:hover {
+    color: var(--pink-deep);
+    transform: translateY(-1px);
+  }
+  .gallery-lightbox-close:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--pink-mid);
+  }
 
   /* ── REVIEWS ── */
   #reviews { background: var(--pink-blush); }
@@ -689,13 +750,9 @@
     .gallery-grid {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: repeat(4, 200px);
+      grid-auto-rows: 200px;
     }
-    .gallery-item:nth-child(1) { grid-column: 1/2; grid-row: 1/2; }
-    .gallery-item:nth-child(2) { grid-column: 2/3; grid-row: 1/2; }
-    .gallery-item:nth-child(3) { grid-column: 1/3; grid-row: 2/3; }
-    .gallery-item:nth-child(4) { grid-column: 1/2; grid-row: 3/4; }
-    .gallery-item:nth-child(5) { grid-column: 2/3; grid-row: 3/4; }
-    .gallery-item:nth-child(6) { grid-column: 1/3; grid-row: 4/5; }
+    .gallery-item { grid-column: span 1; }
   }
   @media (max-width: 680px) {
     nav { padding: 1rem; }
@@ -705,8 +762,10 @@
     .hero-stats { flex-wrap: wrap; gap: 1.2rem; padding: 0.8rem 1.5rem; }
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     .footer-bottom { flex-direction: column; text-align: center; }
-    .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(6, 180px); }
+    .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(6, 180px); grid-auto-rows: 180px; }
     .gallery-item { grid-column: 1/2 !important; grid-row: auto !important; }
+    .gallery-lightbox { padding: 1rem; }
+    .gallery-lightbox-close { top: 0.9rem; right: 0.9rem; }
   }
 </style>
 </head>
@@ -850,6 +909,14 @@
     <div class="gallery-grid" id="galleryGrid" style="margin-top:2.5rem;"></div>
   </div>
 </section>
+
+<!-- GALLERY LIGHTBOX (zoom) -->
+<div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true" role="dialog" aria-label="Zoomed gallery image" aria-modal="true">
+  <button class="gallery-lightbox-close" id="galleryLightboxClose" type="button" aria-label="Close zoom">✕</button>
+  <div class="gallery-lightbox-content">
+    <img class="gallery-lightbox-img" id="galleryLightboxImg" src="" alt="">
+  </div>
+</div>
 
 <!-- REVIEWS -->
 <section id="reviews">
@@ -1045,6 +1112,8 @@ const courses = [
 ];
 
 // ── GALLERY DATA (easy to edit) ──
+// Tip: You can add either objects (src/alt/label) OR simple strings like:
+// "image/Gallery/16.jpeg"
 const gallery = [
   {
     src: "image/Gallery/1.jpeg",
@@ -1053,70 +1122,94 @@ const gallery = [
   },
   {
     src: "image/Gallery/2.jpeg",
-    alt: "Student creations",
-    label: "🍰 Student Creations"
-  },
-  {
-    src: "image/Gallery/3.jpeg",
     alt: "Milk breads",
     label: "🍞 Milk Breads"
   },
   {
+    src: "image/Gallery/3.jpeg",
+    alt: "Exclusive Gourment desserts",
+    label: "🍰 Exclusive Desserts"
+  },
+  {
+    src: "image/Gallery/4.jpeg",
+    alt: "Flavoured Cookies",
+    label: "🍪 Flavoured Cookies"
+  },
+  {
     src: "image/Gallery/5.jpeg",
-    alt: "Pizza baking session",
-    label: "🥖 Pizza"
-  },
-  {
-    src: "image/Gallery/13.jpeg",
-    alt: "Decorating session",
-    label: "🌸 Cake Decorating"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=800&q=80",
-    alt: "Pastries and treats",
-    label: "✨ Sweet Treats"
-  },
-  {
-    src: "image/Gallery/12.jpeg",
-    alt: "Pastries and treats",
-    label: "✨ Sweet Treats"
+    alt: "Brownie Delight Dessert Tub",
+    label: "🍨Brownie Delight"
   },
   {
     src: "image/Gallery/6.jpeg",
-    alt: "Pastries and treats",
-    label: "✨ Sweet Treats"
+    alt: "Banoffee Pie Jars",
+    label: "🍮 Jar cake"
   },
   {
-    src: "image/Gallery/11.jpeg",
-    alt: "Pastries and treats",
-    label: "✨ Sweet Treats"
-  },
-  {
-  src: "image/Gallery/7.jpeg",
-  alt: "Describe the photo",
-  label: "✨ Sweet Treats"
+    src: "image/Gallery/7.jpeg",
+    alt: "Creme Aux Fruits",
+    label: "🍓Desserts"
   },
   {
     src: "image/Gallery/8.jpeg",
-    alt: "Pastries and treats",
-    label: "✨ Sweet Treats"
+    alt: "Choco Ferrero Cake",
+    label: "🍫 Choco Ferrero"
   },
   {
     src: "image/Gallery/9.jpeg",
-    alt: "Pastries and treats",
-    label: "✨ Sweet Treats"
+    alt: "Rasmalai Cake",
+    label: "🍰 Rasmalai Cake"
+  },
+  {
+    src: "image/Gallery/10.jpeg",
+    alt: "Christmas Cakes",
+    label: "🎄 Christmas Cakes"
+  },
+  {
+  src: "image/Gallery/11.jpeg",
+  alt: "Cup Cake",
+  label: "🧁 Cup Cakes"
+  },
+  {
+    src: "image/Gallery/12.jpeg",
+    alt: "Rolled Crescent Breads",
+    label: "🥐 Crescent Breads"
+  },
+  {
+    src: "image/Gallery/13.jpeg",
+    alt: "Ragi Brownie Tubs",
+    label: "🍫 Ragi Brownies"
   },
   {
     src: "image/Gallery/14.jpeg",
-    alt: "Pastries and treats",
-    label: "✨ Sweet Treats"
+    alt: "Pizza baking session",
+    label: "🍕 Pizza Baking"
   },
   {
     src: "image/Gallery/15.jpeg",
-    alt: "Pastries and treats",
-    label: "✨ Sweet Treats"
+    alt: "Class in progress",
+    label: "Baking Workshop in Action 👩‍🍳"
+  },
+  {
+    src: "image/Gallery/16.jpeg",
+    alt: "Class in progress",
+    label: "Baking Workshop in Action 👩‍🍳"
+  },
+  {
+    src: "image/Gallery/17.jpeg",
+    alt: "Class in progress",
+    label: "Baking Workshop in Action 👩‍🍳"
+  },
+  {
+    src: "image/Gallery/18.jpeg",
+    alt: "Class in progress",
+    label: "Baking Workshop in Action 👩‍🍳"
+  },
+  {
+    src: "image/Gallery/19.jpeg",
+    alt: "Class in progress",
+    label: "Baking Workshop in Action 👩‍🍳"
   }
-  
   
 ];
 
@@ -1169,12 +1262,79 @@ function renderCourses() {
 function renderGallery() {
   const grid = document.getElementById('galleryGrid');
   if (!grid) return;
-  grid.innerHTML = gallery.map((g, i) => `
-    <a class="gallery-item fade-in" style="transition-delay:${i * 0.1}s" href="${g.src}" target="_blank" rel="noopener" aria-label="Open image: ${g.alt}">
-      <img src="${g.src}" alt="${g.alt}" loading="lazy">
-      <div class="gallery-overlay"><span>${g.label}</span></div>
-    </a>
-  `).join('');
+
+  const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (ch) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[ch]));
+
+  const items = gallery
+    .map((g) => (typeof g === 'string' ? { src: g } : g))
+    .filter((g) => g && g.src);
+
+  grid.innerHTML = items.map((g, i) => {
+    const label = g.label || '';
+    const alt = g.alt || label || 'Gallery image';
+    const src = escapeHtml(g.src);
+    const altHtml = escapeHtml(alt);
+    const labelHtml = escapeHtml(label);
+
+    return `
+      <a class="gallery-item fade-in" style="transition-delay:${i * 0.1}s" href="${src}" aria-label="Zoom image: ${altHtml}">
+        <img src="${src}" alt="${altHtml}" loading="lazy">
+        ${label ? `<div class="gallery-overlay"><span>${labelHtml}</span></div>` : ''}
+      </a>
+    `;
+  }).join('');
+}
+
+// ── GALLERY LIGHTBOX (zoom on same page) ──
+function initGalleryLightbox() {
+  const grid = document.getElementById('galleryGrid');
+  const lightbox = document.getElementById('galleryLightbox');
+  const lightboxImg = document.getElementById('galleryLightboxImg');
+  const closeBtn = document.getElementById('galleryLightboxClose');
+  if (!grid || !lightbox || !lightboxImg || !closeBtn) return;
+
+  let lastFocused = null;
+
+  const open = (src, alt) => {
+    lastFocused = document.activeElement;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || 'Gallery image';
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  };
+
+  const close = () => {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  };
+
+  grid.addEventListener('click', (event) => {
+    const item = event.target.closest('.gallery-item');
+    if (!item) return;
+    event.preventDefault();
+    const src = item.getAttribute('href');
+    const alt = item.querySelector('img')?.getAttribute('alt') || 'Gallery image';
+    if (src) open(src, alt);
+  });
+
+  closeBtn.addEventListener('click', close);
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) close();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lightbox.classList.contains('open')) close();
+  });
 }
 
 // ── RENDER REVIEWS ──
@@ -1252,9 +1412,11 @@ document.querySelectorAll('.mm-link').forEach(link => {
 // ── INIT ──
 renderCourses();
 renderGallery();
+initGalleryLightbox();
 renderReviews();
 createParticles();
 setTimeout(initScrollAnimations, 100);
 </script>
 </body>
 </html>
+
